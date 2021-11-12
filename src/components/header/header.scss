@@ -1,0 +1,161 @@
+@import "../../sass/variables.scss";
+@import "../../sass/mixins.scss";
+
+.header {
+  padding-top: 20px;
+  padding-bottom: 22px;
+  background-color: $background-gray;
+
+  @media (max-width: $desktop-width - 1) {
+    padding-top: 16px;
+  }
+
+  @media (max-width: $tablet-width - 1) {
+    padding-bottom: 3px;
+
+    &--mobile-menu {
+      height: 100vh;
+    }
+  }
+}
+
+.header__main-nav {
+  @include font(normal, 16px, 19px);
+
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+
+  @media (min-width: $tablet-mobile-intermediate) and (max-width: $desktop-width - 1) {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
+
+.header__logo {
+  flex-shrink: 0;
+  margin-top: 6px;
+  margin-right: 104px;
+
+  @media (max-width: $desktop-width - 1) {
+    margin-right: 65px;
+  }
+
+  @media (max-width: $tablet-width - 1) {
+    margin-top: -2px;
+  }
+}
+
+.header__logo-img {
+  display: block;
+}
+
+.header__menu {
+  @media (max-width: $tablet-mobile-intermediate) {
+    width: 100%;
+
+    &--hidden {
+      display: none;
+    }
+  }
+}
+
+.header__wrapper {
+  flex-grow: 1;
+  display: flex;
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    flex-direction: column;
+
+    &--open {
+      position: absolute;
+      z-index: 4;
+      top: 40px;
+      left: 13px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 92%;
+      background-color: $background-gray;
+    }
+  }
+}
+
+.header__menu-button {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    opacity: 0.5;
+  }
+
+  @media (min-width: $tablet-mobile-intermediate - 1) {
+    display: none;
+  }
+
+  &::before,
+  &::after,
+  span::after {
+    @include pseudo;
+    width: 16px;
+    height: 2px;
+    left: 0;
+    background-color: $dark;
+  }
+
+  &::before {
+    top: 2px;
+  }
+
+  &::after {
+    top: 7px;
+  }
+
+  span::after {
+    top: 12px;
+  }
+}
+
+.header__close-button {
+  position: absolute;
+  z-index: 5;
+  width: 20px;
+  height: 20px;
+  top: -10px;
+  right: 8px;
+  border: none;
+  background-color: $background-gray;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    opacity: 0.5;
+  }
+
+  @media (min-width: $tablet-mobile-intermediate - 1) {
+    display: none;
+  }
+
+  &::before,
+  &::after {
+    @include pseudo;
+    width: 18px;
+    height: 2px;
+    top: 16px;
+    left: -2px;
+    background-color: $button-dark;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+}

@@ -1,0 +1,82 @@
+@import "../../sass/variables.scss";
+@import "../../sass/mixins.scss";
+
+.user-nav {
+  @include list;
+
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin-left: auto;
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    &--open {
+      justify-content: flex-start;
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+}
+
+.user-nav__item {
+  margin: 0;
+
+  &:last-child {
+    padding-right: 0;
+  }
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    width: 100%;
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+}
+
+.user-nav__link {
+  display: block;
+  position: relative;
+  padding-right: 0;
+  padding-left: 30px;
+  color: $dark;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.user-nav__icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  @media (max-width: $desktop-width - 1) {
+    top: 8px;
+    left: 10px;
+  }
+
+  @media (max-width: $tablet-width - 1) {
+    top: 2px;
+    left: 15px;
+    width: 14px;
+    height: 16px;
+  }
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+
+    &--open {
+      left: 0;
+    }
+  }
+}
+
+.user-nav__text {
+  @media (max-width: $desktop-width - 1) {
+    font-size: 0px;
+
+    &--visible {
+      font-size: 16px;
+    }
+  }
+}

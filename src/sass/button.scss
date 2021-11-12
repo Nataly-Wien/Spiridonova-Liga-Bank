@@ -1,0 +1,32 @@
+.button {
+  display: inline-block;
+  padding: 15px 36px 16px;
+  @include font(500, 18px, 21px);
+  border-radius: 4px;
+
+  &--white {
+    color: $dark;
+    background-color: $white;
+
+    &:hover {
+      background-color: $background-gray;
+    }
+
+    &:active {
+      background-color: $light;
+   }
+  }
+
+  &--blue {
+    color: $background-gray;
+    background-color: $blue;
+
+    &:hover{
+      background-color: $blue-opacity;
+    }
+
+    &:active {
+      background-color: $footer-darkgrey;
+   }
+  }
+}

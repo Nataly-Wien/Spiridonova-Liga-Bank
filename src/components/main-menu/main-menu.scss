@@ -1,0 +1,49 @@
+@import "../../sass/variables.scss";
+@import "../../sass/mixins.scss";
+
+.main-menu {
+  @include list;
+
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+  @media (max-width: $desktop-width - 1) {
+    margin-top: 12px;
+  }
+
+  @media (max-width: $tablet-width - 1) {
+    margin-top: 0;
+  }
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 0;
+    padding-top: 22px;
+    background-color: $background-gray;
+  }
+}
+
+.main-menu__item {
+  margin: 0;
+  margin-right: 15px;
+
+  @media (max-width: $desktop-width - 1) {
+    margin-right: 20px;
+  }
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    width: 100%;
+  }
+}
+
+.main-menu__link {
+  display: block;
+  color: $dark;
+
+  &:hover{
+    opacity: 0.5;
+  }
+}

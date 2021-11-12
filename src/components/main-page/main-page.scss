@@ -1,0 +1,11 @@
+@import "../../sass/mixins.scss";
+@import "../../sass/variables.scss";
+
+
+.page-main {
+  @include reset-indent;
+  height: 100%;
+  font-family: "Roboto", "Arial", sans-serif;
+  color: $dark;
+  background-color: $white;
+}

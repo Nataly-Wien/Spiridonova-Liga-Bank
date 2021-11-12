@@ -1,0 +1,32 @@
+.menu-link {
+  display: block;
+  padding: 15px 5px;
+
+  @media (max-width: $desktop-width - 1) {
+    padding: 0;
+  }
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    padding: 20px 0 20px 20px;
+    border-bottom: 1px solid $line-grey;
+
+    &:first-child {
+      border-top: 1px solid $line-grey;
+    }
+
+    &--without-text {
+      border: none;
+      padding: 0;
+      margin-right: -15px;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    color: $blue;
+  }
+
+  &:active {
+    color: $footer-darkgrey;
+   }
+}

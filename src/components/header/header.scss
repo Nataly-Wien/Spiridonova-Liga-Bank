@@ -8,10 +8,11 @@
 
   @media (max-width: $desktop-width - 1) {
     padding-top: 16px;
+    padding-bottom: 23px;
   }
 
   @media (max-width: $tablet-width - 1) {
-    padding-bottom: 3px;
+    padding-bottom: 2px;
 
     &--mobile-menu {
       height: 100vh;
@@ -83,6 +84,9 @@
 
 .header__menu-button {
   position: relative;
+  cursor: pointer;
+  left: -7px;
+  top: -7px;
   width: 30px;
   height: 30px;
   border: none;
@@ -104,30 +108,30 @@
     @include pseudo;
     width: 16px;
     height: 2px;
-    left: 0;
+    left: 7px;
     background-color: $dark;
   }
 
   &::before {
-    top: 2px;
+    top: 9px;
   }
 
   &::after {
-    top: 7px;
+    top: 14px;
   }
 
   span::after {
-    top: 12px;
+    top: 19px;
   }
 }
 
 .header__close-button {
   position: absolute;
   z-index: 5;
-  width: 20px;
-  height: 20px;
-  top: -10px;
-  right: 8px;
+  width: 30px;
+  height: 30px;
+  top: -9px;
+  right: 7px;
   border: none;
   background-color: $background-gray;
   cursor: pointer;
@@ -146,8 +150,8 @@
     @include pseudo;
     width: 18px;
     height: 2px;
-    top: 16px;
-    left: -2px;
+    top: 14px;
+    left: 6px;
     background-color: $button-dark;
   }
 

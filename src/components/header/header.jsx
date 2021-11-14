@@ -34,12 +34,13 @@ const Header = () => {
   const lastFocusTarget = useRef(null);
 
   const handleKeyDown = (evt) => {
-    if (evt.key === 'Tab' && !evt.shiftKey && evt.target.closest(`.header__button`)) {
+    console.log(evt.target);
+    if (evt.key === 'Tab' && !evt.shiftKey && evt.target.closest(`.header__close-button`)) {
       evt.preventDefault();
       firstFocusTarget.current.focus();
     }
 
-    if (evt.key === 'Tab' && evt.shiftKey && evt.target.closest(`.menu__link--header-first`)) {
+    if (evt.key === 'Tab' && evt.shiftKey && evt.target.closest(`.header__menu-button`)) {
       evt.preventDefault();
       lastFocusTarget.current.focus();
     }

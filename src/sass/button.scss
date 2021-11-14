@@ -29,4 +29,16 @@
       background-color: $footer-darkgrey;
    }
   }
+
+  @media (max-width: $desktop-width - 1) {
+    padding: 14px 31px 15px;
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  @media (max-width: $tablet-width - 1) {
+    padding: 13px 31px 14px;
+    font-size: 14px;
+    line-height: 16px;
+  }
 }

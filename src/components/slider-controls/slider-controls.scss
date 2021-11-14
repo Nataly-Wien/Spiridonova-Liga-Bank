@@ -1,0 +1,58 @@
+@import "../../sass/variables.scss";
+@import "../../sass/mixins.scss";
+
+.slider-controls__list {
+  @include list;
+
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 35px;
+  bottom: 40px;
+
+  @media (max-width: $desktop-width - 1) {
+    bottom: 15px;
+  }
+
+  @media (max-width: $tablet-width - 1) {
+    bottom: 9px;
+  }
+}
+
+.slider-controls__item {
+  padding-right: 8px;
+
+  &:last-child {
+    padding-right: 0;
+  }
+
+  @media (max-width: $tablet-width - 1) {
+    padding-right: 6px;
+  }
+}
+
+.slider-controls__button {
+  padding: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: $button-slider;
+  border: none;
+  cursor: pointer;
+
+  &--current {
+    background-color: $title-light;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  &--grey {
+    background-color: #E0E0E0;
+  }
+
+  @media (max-width: $tablet-width - 1) {
+    width: 6px;
+    height: 6px;
+  }
+}

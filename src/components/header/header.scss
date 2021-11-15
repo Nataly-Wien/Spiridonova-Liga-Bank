@@ -8,15 +8,19 @@
 
   @media (max-width: $desktop-width - 1) {
     padding-top: 16px;
-    padding-bottom: 23px;
+    padding-bottom: 20px;
   }
 
   @media (max-width: $tablet-width - 1) {
-    padding-bottom: 2px;
+    padding-bottom: 12px;
 
     &--mobile-menu {
       height: 100vh;
     }
+  }
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    padding-bottom: 2px;
   }
 }
 

@@ -3,9 +3,17 @@
 
 .slide__wrapper {
   min-height: 400px;
+  width: 100%;
+  flex-shrink: 0;
   padding-top: 102px;
   padding-left: 270px;
   background-repeat: no-repeat;
+
+  &--hidden {
+    @media (min-width: $tablet-width + 1) {
+      display: none;
+    }
+  }
 
   &--slide2 {
     background-image: url("../../img/man.jpg");
@@ -18,7 +26,7 @@
 
     @media (max-width: $tablet-mobile-intermediate - 1) {
       background-size: auto 226px;
-      background-position: top 0px right -98px;
+      background-position: top 0px right -156px;
     }
   }
 
@@ -85,6 +93,10 @@
     padding-left: 86px;
   }
 
+   @media (max-width: $tablet-width) {
+    scroll-snap-align: start;
+  }
+
   @media (max-width: $tablet-mobile-intermediate - 1) {
     min-height: 226px;
     padding-top: 38px;
@@ -137,6 +149,10 @@
     font-size: 16px;
     line-height: 19px;
   }
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    width: 70%;
+  }
 }
 
 .slide__button {
@@ -148,5 +164,12 @@
   @media (max-width: $desktop-width - 1) {
     padding-left: 38px;
     padding-right: 38px;
+  }
+
+  &--slide1 {
+    @media (max-width: $desktop-width - 1) {
+      padding-left: 31px;
+      padding-right: 31px;
+    }
   }
 }

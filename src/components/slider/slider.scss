@@ -4,6 +4,7 @@
 .slider {
   position: relative;
   min-height: 400px;
+  max-width: 100%;
   background-repeat: no-repeat;
 
   &--slide1 {
@@ -39,5 +40,15 @@
 
   @media (max-width: $tablet-width - 1) {
     min-height: 226px;
+  }
+}
+
+.slider-wrapper {
+  display: flex;
+  max-width: 100%;
+
+  @media (max-width: $tablet-width) {
+    scroll-snap-type: x proximity;
+    overflow-x: scroll;
   }
 }

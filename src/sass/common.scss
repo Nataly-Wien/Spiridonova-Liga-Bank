@@ -48,8 +48,20 @@ a {
     }
 
     @media (max-width: $tablet-width - 1) {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    @media (max-width: $tablet-mobile-intermediate - 1) {
       padding-left: 15px;
       padding-right: 15px;
+    }
+
+    &--tabs {
+      @media (max-width: $desktop-width - 1) {
+        padding-left: 0;
+        padding-right: 0;
+      }
     }
 }
 

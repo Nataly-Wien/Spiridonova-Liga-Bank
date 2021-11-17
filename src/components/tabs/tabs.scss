@@ -1,0 +1,8 @@
+@import "../../sass/variables.scss";
+
+.tabs {
+  @media (max-width: $desktop-width - 1) {
+    position: relative;
+    background-color: $title-light;
+  }
+}

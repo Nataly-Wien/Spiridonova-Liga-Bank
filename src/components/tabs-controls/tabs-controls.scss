@@ -1,0 +1,57 @@
+@import "../../sass/variables.scss";
+@import "../../sass/mixins.scss";
+
+.tabs-controls {
+  max-width: 100%
+}
+
+.tabs-controls__wrapper {
+  @media (max-width: $desktop-width - 1) {
+    display: flex;
+    max-width: 100%;
+    min-height: 362px;
+    scroll-snap-type: x proximity;
+    overflow-x: scroll;
+  }
+}
+
+.tabs-controls__list {
+  @include list;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  &--hidden {
+    @media (max-width: $desktop-width - 1) {
+      display: none;
+    }
+  }
+}
+
+.tabs-controls__item {
+  flex-basis: 25%;
+}
+
+.tabs-controls__button {
+  @include font(500, 18px, 21px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 93px;
+  border: none;
+  padding: 28px;
+  color: $dark;
+  background-color: $white;
+  cursor: pointer;
+
+  &--current {
+    background-color: $title-light;
+    cursor: default;
+  }
+}
+
+.tabs-controls__button-icon {
+  margin-right: 10px;
+}

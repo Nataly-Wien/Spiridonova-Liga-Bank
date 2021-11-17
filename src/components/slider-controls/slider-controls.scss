@@ -1,6 +1,14 @@
 @import "../../sass/variables.scss";
 @import "../../sass/mixins.scss";
 
+.slider-controls {
+  &--hidden {
+    @media (min-width: $desktop-width) {
+      display: none;
+    }
+  }
+}
+
 .slider-controls__list {
   @include list;
 
@@ -13,6 +21,11 @@
 
   @media (max-width: $desktop-width - 1) {
     bottom: 15px;
+
+    &--tabs {
+      bottom: 25px;
+      left: 0;
+    }
   }
 
   @media (max-width: $tablet-width - 1) {
@@ -37,18 +50,18 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: $button-slider;
+  background-color: $slider-button;
   border: none;
   cursor: pointer;
 
   &--current {
-    background-color: $title-light;
+    background-color: $slider-button-current;
     cursor: default;
     pointer-events: none;
   }
 
-  &--grey {
-    background-color: #E0E0E0;
+  &--white {
+    background-color: $title-light;
   }
 
   @media (max-width: $tablet-width - 1) {

@@ -1,24 +1,18 @@
 import './slider.scss';
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import Slide from '../slide/slide';
 import SliderControls from '../slider-controls/slider-controls';
-import {CURRENT_SLIDE, SLIDER_LENGTH, SLIDER_DATA} from '../../const';
+import {useScrollOffset} from '../../hooks/use-scroll-offset';
+import {CURRENT_SLIDE, SLIDER_LENGTH, SLIDER_DATA, SliderTypes} from '../../const';
 
 const Slider = () => {
   const [currentSlide, setCurrentSlide] = useState(CURRENT_SLIDE);
+  const [scrollRef, handleScroll] = useScrollOffset(setCurrentSlide);
 
   const handleSliderButtonClick = (button) => setCurrentSlide(button);
 
   const getNextSlide = () => {
     currentSlide < SLIDER_LENGTH - 1 ? setCurrentSlide(currentSlide + 1) : setCurrentSlide(0);
-  };
-
-  const scrollRef = useRef(null);
-
-  const handleSliderScroll = () => {
-    if (scrollRef.current.scrollLeft % document.documentElement.clientWidth === 0) {
-      setCurrentSlide(scrollRef.current.scrollLeft / document.documentElement.clientWidth);
-    }
   };
 
   useEffect(() => {
@@ -29,15 +23,15 @@ const Slider = () => {
 
   return (
     <section className={`slider slider--slide${currentSlide + 1}`} >
-      <div className="slider-wrapper" ref={scrollRef} onScroll={() => handleSliderScroll()}>
+      <div className="slider__wrapper" ref={scrollRef} onScroll={() => handleScroll()}>
         {SLIDER_DATA.map((item, i) => {
           return (
-            <Slide title={item.title} slogan={item.slogan} buttonText={item.buttonText} slideNumber={i + 1}
-              currentSlide={currentSlide} key={`${item.title} ${item.slogan} ${item.buttonText}`} />
+            <Slide title={item.title} slogan={item.slogan} buttonText={item.buttonText} buttonRef={item.buttonRef} slideNumber={i + 1}
+              currentSlide={currentSlide} key={`${item.title}-${item.slogan}-${item.buttonText}`} />
           );
         })}
       </div>
-      <SliderControls currentSlide={currentSlide} onButtonClick={handleSliderButtonClick} />
+      <SliderControls type={SliderTypes.SLIDER} currentSlide={currentSlide} onButtonClick={handleSliderButtonClick} />
     </section >
   );
 };

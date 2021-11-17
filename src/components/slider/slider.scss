@@ -6,6 +6,7 @@
   min-height: 400px;
   max-width: 100%;
   background-repeat: no-repeat;
+  margin-bottom: 60px;
 
   &--slide1 {
     background-color: $blue;
@@ -36,6 +37,7 @@
 
   @media (max-width: $desktop-width - 1) {
     min-height: 300px;
+    margin-bottom: 0;
   }
 
   @media (max-width: $tablet-width - 1) {
@@ -43,7 +45,7 @@
   }
 }
 
-.slider-wrapper {
+.slider__wrapper {
   display: flex;
   max-width: 100%;
 

@@ -5,7 +5,7 @@ import {CURRENT_PAGE} from '../../const';
 
 const MainMenu = () => {
   return (
-    <ul className="main-nav__main-menu main-menu">
+    <ul className="main-menu">
       {MAIN_MENU_ITEMS.map((item) => {
         return (
           <li className="main-menu__item menu-link" key={`${item}`}>

@@ -13,7 +13,7 @@ const SliderControls = ({type, currentSlide, onButtonClick}) => {
       const legend = `${i + 1}-й слайд`;
       buttons.push(<li className="slider-controls__item" key={legend}>
         <button className={`slider-controls__button${i === current ? ` slider-controls__button--current` : ``}${type === SliderTypes.SLIDER && (current === 0 || current === 1) && i === current ? ` slider-controls__button--white` : ``}`}
-          type="button" onClick={(i !== current) ? () => onButtonClick(i) : () => { }}>
+          type="button">
           <span className="visually-hidden">{legend}</span>
         </button>
       </li>);

@@ -6,7 +6,7 @@
 }
 
 .tabs-controls__wrapper {
-  @media (max-width: $desktop-width - 1) {
+  @media (max-width: $tablet-width) {
     display: flex;
     max-width: 100%;
     min-height: 362px;
@@ -22,7 +22,7 @@
   flex-wrap: wrap;
 
   &--hidden {
-    @media (max-width: $desktop-width - 1) {
+    @media (max-width: $tablet-width) {
       display: none;
     }
   }
@@ -41,7 +41,7 @@
   width: 100%;
   height: 93px;
   border: none;
-  padding: 28px;
+  padding: 28px 24px;
   color: $dark;
   background-color: $white;
   cursor: pointer;
@@ -54,4 +54,8 @@
 
 .tabs-controls__button-icon {
   margin-right: 10px;
+}
+
+.tabs-controls__button-text {
+  text-align: start;
 }

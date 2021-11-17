@@ -1,7 +1,7 @@
 @import "../../sass/variables.scss";
 
 .tabs {
-  @media (max-width: $desktop-width - 1) {
+  @media (max-width: $tablet-width) {
     position: relative;
     background-color: $title-light;
   }

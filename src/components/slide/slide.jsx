@@ -7,9 +7,9 @@ const Slide = ({title, slogan, buttonText, buttonRef, slideNumber, currentSlide}
 
   useEffect(() => {
     if (slideNumber === currentSlide + 1) {
-      slideRef.current.scrollIntoView({inline: `start`})
+      slideRef.current.scrollIntoView({block: `end`, inline: `start`})
     }
-  }, [currentSlide]);
+  }, [slideNumber, currentSlide]);
 
   return (
     <div className={`slide slide--slide${slideNumber}${slideNumber !== currentSlide + 1 ? ` slide--hidden` : ``} container`} ref={slideRef}>

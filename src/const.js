@@ -94,4 +94,98 @@ export const getTabsIcon = (name) => {
       return (<svg width="20" height="34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.675 0H2.325C1.047 0 0 1.033 0 2.296v29.407C0 32.966 1.047 34 2.325 34h15.35C18.953 34 20 32.968 20 31.703V2.296C20 1.033 18.953 0 17.675 0ZM7.545 1.655h4.91a.28.28 0 0 1 .282.28.28.28 0 0 1-.282.277h-4.91a.28.28 0 0 1-.282-.278.28.28 0 0 1 .282-.279ZM10 32.852a1.155 1.155 0 0 1-1.163-1.15c0-.635.52-1.148 1.163-1.148.642 0 1.163.513 1.163 1.149 0 .635-.52 1.149-1.163 1.149Zm8.382-3.102H1.618V3.642h16.764V29.75Z" fill="#565EF5" /></svg>);
     default: return;
   }
+}
+
+export const CreditPurposes = {
+  NONE: `Выберите цель кредита`,
+  HYPOTHEC: `Ипотечное кредитование`,
+  AUTO: `Автомобильное кредитование`,
 };
+
+export const CreditConstants = {
+  PRICE_MIN: {
+    [CreditPurposes.HYPOTHEC]: 1200000,
+    [CreditPurposes.AUTO]: 500000,
+  },
+  PRICE_MAX: {
+    [CreditPurposes.HYPOTHEC]: 25000000,
+    [CreditPurposes.AUTO]: 5000000,
+  },
+  // PRICE_INITIAL: {
+  //   // [CreditPurposes.NONE]: 0,
+  //   [CreditPurposes.HYPOTHEC]: 5000000,
+  //   [CreditPurposes.AUTO]: 1500000,
+  // },
+  PRICE_STEP: {
+    [CreditPurposes.HYPOTHEC]: 100000,
+    [CreditPurposes.AUTO]: 50000,
+  },
+  FIRST_PAY_MIN: {
+    [CreditPurposes.HYPOTHEC]: 0.1,
+    [CreditPurposes.AUTO]: 0.2,
+  },
+  FIRST_PAY_STEP: {
+    [CreditPurposes.HYPOTHEC]: 0.05,
+    [CreditPurposes.AUTO]: 0.05,
+  },
+  FIRST_PAY_TOTAL: {
+    [CreditPurposes.HYPOTHEC]: 0,
+    [CreditPurposes.AUTO]: 0,
+  },
+  TIME_MIN: {
+    [CreditPurposes.HYPOTHEC]: 5,
+    [CreditPurposes.AUTO]: 1,
+  },
+  TIME_MAX: {
+    [CreditPurposes.HYPOTHEC]: 30,
+    [CreditPurposes.AUTO]: 5,
+  },
+  MIN_CREDIT: {
+    [CreditPurposes.HYPOTHEC]: 500000,
+    [CreditPurposes.AUTO]: 200000,
+  },
+  RATE_LIMIT: {
+    [CreditPurposes.HYPOTHEC]: 0.15,
+    [CreditPurposes.AUTO]: 2000000,
+  },
+  MOTHER_MONEY: 470000,
+  HYPOTHEC_RATES: [0.094, 0.085],
+  // AUTO_RATES: [0.16, 0.15, 0.085, 0.035],
+  AUTO_RATES: [0.035, 0.085, 0.15, 0.16],
+
+  // INCOME_LIMIT: 0.45,
+};
+
+
+
+export const PopupTypes = {
+  ENTER: `ENTER`,
+  THANKS: `THANKS`,
+}
+
+export const MODAL_POPUPS = {
+  enter: {
+    link: `.login-form`,
+  },
+  thanks: {
+    title: `Спасибо за обращение в наш банк.`,
+    text: `Наш менеджер скоро свяжется с вами по указанному номеру телефона.`,
+    link: `.message-modal`,
+  },
+};
+
+export const emptyUser = {
+  login: ``,
+  password: ``,
+};
+
+export const getWordForm = (number, wordForms) => {
+  const cases = [2, 0, 1, 1, 1, 2];
+  number = Math.floor(Math.abs(number)) % 100;
+
+  return wordForms[number > 4 && number < 20 ? 2 : cases[Math.min(number % 10, 5)]];
+};
+
+export const getMoneyFormat = (number) => number.toString().split(``).reverse().join(``).match(/\d{0,3}/g).join(` `).split(``).reverse().join(``).trim();
+export const getMoney = (number) => `${getMoneyFormat(number)} ${getWordForm(number, [`рубль`, `рубля`, `рублей`])}`;
+export const getNum = (string) => +string.replace(/[^0-9]/g, ``);

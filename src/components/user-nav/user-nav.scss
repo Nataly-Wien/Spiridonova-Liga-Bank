@@ -35,14 +35,23 @@
 }
 
 .user-nav__link {
+  @include font(normal, 16px, 19px);
+
   display: block;
   position: relative;
   padding-right: 0;
   padding-left: 30px;
   color: $dark;
+  background-color: $background-gray;
+  border: none;
 
   &:hover {
     opacity: 0.5;
+  }
+
+  @media (min-width: $tablet-mobile-intermediate) and (max-width: $desktop-width - 1) {
+    font-size: 14px;
+    line-height: 16px;
   }
 }
 

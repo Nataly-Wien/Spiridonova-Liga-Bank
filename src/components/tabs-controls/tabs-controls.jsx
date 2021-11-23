@@ -2,10 +2,10 @@ import './tabs-controls.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {TABS, getTabsIcon} from '../../const';
-import {useScrollOffset} from '../../hooks/use-scroll-offset';
+import {useSwipeScrollOffset} from '../../hooks/use-swipe-scroll-offset';
 
 const TabControls = ({currentTab, onTabClick, onTabsScroll, children}) => {
-  const [scrollRef, handleScroll] = useScrollOffset(onTabsScroll);
+  const [scrollRef, handleScroll] = useSwipeScrollOffset(onTabsScroll);
 
   return (
     <div className="tabs-controls ">

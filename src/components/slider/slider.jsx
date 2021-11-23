@@ -2,12 +2,12 @@ import './slider.scss';
 import React, {useState, useEffect} from 'react';
 import Slide from '../slide/slide';
 import SliderControls from '../slider-controls/slider-controls';
-import {useScrollOffset} from '../../hooks/use-scroll-offset';
+import {useSwipeScrollOffset} from '../../hooks/use-swipe-scroll-offset';
 import {CURRENT_SLIDE, SLIDER_LENGTH, SLIDER_DATA, SliderTypes} from '../../const';
 
 const Slider = () => {
   const [currentSlide, setCurrentSlide] = useState(CURRENT_SLIDE);
-  const [scrollRef, handleScroll] = useScrollOffset(setCurrentSlide);
+  const [scrollRef, handleScroll] = useSwipeScrollOffset(setCurrentSlide);
 
   const handleSliderButtonClick = (button) => setCurrentSlide(button);
 
@@ -15,11 +15,11 @@ const Slider = () => {
     currentSlide < SLIDER_LENGTH - 1 ? setCurrentSlide(currentSlide + 1) : setCurrentSlide(0);
   };
 
-  useEffect(() => {
-    const timer = setInterval(getNextSlide, 4000);
+  // useEffect(() => {
+  //   const timer = setInterval(getNextSlide, 4000);
 
-    return () => clearInterval(timer);
-  });
+  //   return () => clearInterval(timer);
+  // });
 
   return (
     <section className={`slider slider--slide${currentSlide + 1}`} >

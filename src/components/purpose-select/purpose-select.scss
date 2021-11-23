@@ -1,0 +1,33 @@
+@import "../../sass/variables.scss";
+@import "../../sass/mixins.scss";
+
+.purpose-select {
+  position: relative;
+  margin-bottom: 33px;
+
+  &::before {
+    @include pseudo;
+
+    width: 30px;
+    height: 18px;
+    top: 25px;
+    right: 13px;
+    background-image: url("../../img/select-caret.svg");
+    background-repeat: no-repeat;
+  }
+}
+
+.purpose-select__select {
+  @include font(500, 16px, 22px);
+
+  height: 60px;
+  width: 100%;
+  font-family: inherit;
+  border: 1px solid $dark;
+  border-radius: 4px;
+  color: $dark;
+  background-color: $white;
+  padding: 12px 19px;
+  appearance: none;
+  cursor: pointer;
+}

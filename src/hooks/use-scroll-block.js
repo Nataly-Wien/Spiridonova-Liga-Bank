@@ -3,6 +3,7 @@ import {useRef} from 'react';
 const originalOverflow = window.getComputedStyle(document.body).overflow;
 const originalPaddingRight = window.getComputedStyle(document.body).paddingRight;
 const scrollWidth = window.innerWidth - document.documentElement.clientWidth;
+// console.log(window.innerWidth, document.documentElement.clientWidth, scrollWidth);
 
 export const useScrollBlock = () => {
   const scrollBlocked = useRef();

@@ -1,0 +1,17 @@
+@import "../../sass/variables.scss";
+@import "../../sass/mixins.scss";
+
+.offer {
+  height: min-content;
+  background-color: $title-light;
+  padding: 60px;
+
+  @media (max-width: $desktop-width - 1) {
+    padding-top: 53px;
+  }
+}
+
+.offer__title {
+  @include reset-indent;
+  @include font(500, 22px, 31px);
+}

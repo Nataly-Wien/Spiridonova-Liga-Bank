@@ -1,0 +1,58 @@
+@import "../../sass/variables.scss";
+@import "../../sass/mixins.scss";
+
+.credit-calc {
+  margin-top: 95px;
+  padding-bottom: 110px;
+
+  @media (max-width: $desktop-width - 1) {
+    margin-top: 68px;
+    padding-bottom: 110px;
+  }
+
+  @media (max-width: $tablet-width - 1) {
+
+  }
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+
+  }
+}
+
+.credit-calc__title {
+  @include reset-indent;
+  @include font(700, 41px, 57px);
+
+  margin-bottom: 50px;
+
+  @media (max-width: $desktop-width - 1) {
+    @include font(700, 32px, 45px);
+
+    margin-bottom: 28px;
+  }
+}
+
+.credit-calc__sub-title {
+  @include reset-indent;
+  @include font(500, 22px, 31px);
+
+  margin-bottom: 20px;
+
+  @media (max-width: $desktop-width - 1) {
+    @include font(500, 18px, 25px);
+
+    margin-bottom: 18px;
+  }
+}
+
+.credit-calc__wrapper {
+  display: grid;
+  grid-template-columns: 51.5% 42.5%;
+  column-gap: 6%;
+
+  @media (max-width: $desktop-width - 1) {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

@@ -1,6 +1,6 @@
 import {useRef} from 'react';
 
-export const useScrollOffset = (scrollHandler) => {
+export const useSwipeScrollOffset = (scrollHandler) => {
   const scrollRef = useRef(null);
 
   const handleScroll = () => {

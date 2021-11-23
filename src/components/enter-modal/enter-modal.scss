@@ -1,0 +1,155 @@
+@import "../../sass/variables.scss";
+@import "../../sass/mixins.scss";
+
+.login-form {
+  position: relative;
+  width: 544px;
+  padding: 56px;
+  padding-bottom: 55px;
+  background-color: $title-light;
+  border: 4px solid $blue;
+}
+
+.login-form__logo-wrapper {
+  position: relative;
+  padding-bottom: 40px;
+}
+
+.login-form__logo-img {
+  display: block;
+}
+
+.login-form__title {
+  @include font(400, 12px, 14px);
+
+  position: absolute;
+  top: 7px;
+  left: 38px;
+}
+
+.login-form__input-wrapper {
+  @include reset-indent;
+  display: flex;
+  flex-direction: column;
+
+  &--password {
+    position: relative;
+  }
+}
+
+.login-form__label {
+  @include reset-indent;
+  padding-bottom: 5px;
+}
+
+.login-form__input-button {
+  position: absolute;
+  z-index: 5;
+  right: 20px;
+  top: 42px;
+  width: 32px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+
+  &--hidden {
+    background-image: url("../../img/eye.svg");
+  }
+
+  &--visible {
+    background-image: url("../../img/visible_eye.svg");
+    background-size: contain;
+  }
+}
+
+.login-form__control {
+  @include font(500, 20px, 24px);
+
+  margin: 0;
+  margin-bottom: 27px;
+  padding: 15px 25px;
+  font-family: inherit;
+  color: $black;
+  background-color: $title-light;
+
+  &--input {
+    height: 60px;
+    border: 1px solid $dark;
+    border-radius: 4px;
+
+    &:focus {
+      border-color: $blue;
+    }
+  }
+
+  &--input-password {
+    padding-right: 55px;
+  }
+}
+
+.login-form__link {
+  @include reset-indent;
+  @include font(400, 12px, 17px);
+
+  position: relative;
+  top: -20px;
+  align-self: flex-end;
+  color: $footer-darkgrey;
+}
+
+.login-form__send-btn {
+  width: 100%;
+  margin-top: 3px;
+  padding: 19px 38px;
+}
+
+.login-form__close-btn {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+  &::before,
+  &::after {
+    @include pseudo;
+
+    left: 4px;
+    top: 13px;
+    width: 25px;
+    height: 2px;
+    background-color: $dark;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: 1px solid $footer-darkgrey;
+  }
+
+  &:hover::before,
+  &:focus::before,
+  &:active::before,
+  &:hover::after,
+  &:focus::after,
+  &:active::after {
+    background-color: $dark;
+  }
+}

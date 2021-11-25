@@ -111,11 +111,10 @@ export const CreditConstants = {
     [CreditPurposes.HYPOTHEC]: 25000000,
     [CreditPurposes.AUTO]: 5000000,
   },
-  // PRICE_INITIAL: {
-  //   // [CreditPurposes.NONE]: 0,
-  //   [CreditPurposes.HYPOTHEC]: 5000000,
-  //   [CreditPurposes.AUTO]: 1500000,
-  // },
+  PRICE_INITIAL: {
+    [CreditPurposes.HYPOTHEC]: 5000000,
+    [CreditPurposes.AUTO]: 1500000,
+  },
   PRICE_STEP: {
     [CreditPurposes.HYPOTHEC]: 100000,
     [CreditPurposes.AUTO]: 50000,
@@ -150,10 +149,8 @@ export const CreditConstants = {
   },
   MOTHER_MONEY: 470000,
   HYPOTHEC_RATES: [0.094, 0.085],
-  // AUTO_RATES: [0.16, 0.15, 0.085, 0.035],
   AUTO_RATES: [0.035, 0.085, 0.15, 0.16],
-
-  // INCOME_LIMIT: 0.45,
+  INCOME_LIMIT: 0.45,
 };
 
 
@@ -189,3 +186,4 @@ export const getWordForm = (number, wordForms) => {
 export const getMoneyFormat = (number) => number.toString().split(``).reverse().join(``).match(/\d{0,3}/g).join(` `).split(``).reverse().join(``).trim();
 export const getMoney = (number) => `${getMoneyFormat(number)} ${getWordForm(number, [`рубль`, `рубля`, `рублей`])}`;
 export const getNum = (string) => +string.replace(/[^0-9]/g, ``);
+export const getCommaFormat = (string) => string.replace(`.`, `,`);

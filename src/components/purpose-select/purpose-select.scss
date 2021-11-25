@@ -14,6 +14,17 @@
     right: 13px;
     background-image: url("../../img/select-caret.svg");
     background-repeat: no-repeat;
+    cursor: pointer;
+
+    @media (max-width: $tablet-mobile-intermediate - 1) {
+      width: 19px;
+      height: 9px;
+    }
+  }
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    margin-top: 16px;
+    margin-bottom: 25px;
   }
 }
 
@@ -30,4 +41,8 @@
   padding: 12px 19px;
   appearance: none;
   cursor: pointer;
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    padding: 12px 10px;
+  }
 }

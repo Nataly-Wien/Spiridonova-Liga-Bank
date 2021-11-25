@@ -1,87 +1,95 @@
 import './calculate-form.scss';
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import {ActionCreator} from '../../store/action';
 import {useSelector, useDispatch} from 'react-redux';
+import NumberFormat from 'react-number-format';
 import {CreditPurposes, CreditConstants, getWordForm, getMoney, getMoneyFormat, getNum} from '../../const';
 
 const CalculateForm = () => {
   const purpose = useSelector((state) => state.CREDIT.purpose);
   const dispatch = useDispatch();
 
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState(CreditConstants.PRICE_INITIAL[purpose]);
   const [firstPay, setFirstPay] = useState(CreditConstants.FIRST_PAY_MIN[purpose]);
-  const [firstPayTotal, setFirstPayTotal] = useState(0);
+  const [firstPayTotal, setFirstPayTotal] = useState(Math.floor(firstPay * price));
   const [time, setTime] = useState(CreditConstants.TIME_MIN[purpose]);
   const [mother, setMother] = useState(false);
   const [casco, setCasco] = useState(false);
   const [life, setLife] = useState(false);
 
-  const priceInput = useRef(null);
+  const [isInputCorrect, setIsInputCorrect] = useState(true);
 
   useEffect(() => {
-    setPrice(0);
+    setPrice(CreditConstants.PRICE_INITIAL[purpose]);
     setFirstPay(CreditConstants.FIRST_PAY_MIN[purpose]);
+    setFirstPayTotal(Math.floor(firstPay * price));
     setTime(CreditConstants.TIME_MIN[purpose]);
     setMother(false);
     setCasco(false);
-    setLife(false);
-
-    // priceInput.current.focus();       //если убрать это, убрать и реф из инпута
+    setLife(false)
   }, [purpose]);
 
-  // const getMaxFirstPay = () => {
-  //   const credit = mother ? price - CreditConstants.MOTHER_MONEY : price;
+  useEffect(() => {
+    calculateOffer();
+  }, [price, firstPay, time, mother, casco, life]);
 
-  //   return (credit - CreditConstants.MIN_CREDIT[purpose]) / credit;
-  // };
+
+  const calculateOffer = () => {
+    let currentCredit = 0;
+    let currentRate = 0;
+
+    switch (purpose) {
+      case CreditPurposes.HYPOTHEC:
+        currentCredit = price - firstPayTotal - (mother ? CreditConstants.MOTHER_MONEY : 0);
+        currentRate = firstPay < CreditConstants.RATE_LIMIT[purpose] ? CreditConstants.HYPOTHEC_RATES[0] : CreditConstants.HYPOTHEC_RATES[1];
+        break;
+
+      case CreditPurposes.AUTO:
+        currentCredit = price - firstPayTotal;
+
+        switch (true) {
+          case (casco && life):
+            currentRate = CreditConstants.AUTO_RATES[0];
+            break;
+
+          case (casco || life):
+            currentRate = CreditConstants.AUTO_RATES[1];
+            break;
+
+          case (price >= CreditConstants.RATE_LIMIT[purpose]):
+            currentRate = CreditConstants.AUTO_RATES[2];
+            break;
+
+          case (price < CreditConstants.RATE_LIMIT[purpose]):
+            currentRate = CreditConstants.AUTO_RATES[3];
+            break;
+          // no default
+        }
+        break;
+      // no default
+    };
+
+    const currentMonthPay = Math.floor((currentCredit * currentRate) / (1 - (Math.pow(1 + currentRate, time * -12))));
+    const currentIncome = Math.floor(currentMonthPay / CreditConstants.INCOME_LIMIT);
+
+    dispatch(ActionCreator.setCredit(currentCredit));
+    dispatch(ActionCreator.setRate(currentRate));
+    dispatch(ActionCreator.setMonthPay(currentMonthPay));
+    dispatch(ActionCreator.setIncome(currentIncome));
+  };
 
   const getCorrectValue = (value, min, max) => Math.min(Math.max(min, value), max);
 
-  const calculateCredit = () => {
-    switch (purpose) {
-      case CreditPurposes.HYPOTHEC:
-        return price - firstPayTotal - mother ? CreditConstants.MOTHER_MONEY : 0;
-
-      case CreditPurposes.AUTO:
-        return price - firstPayTotal;
-
-      default: return;
-    };
-  };
-
-
-  const calculateRate = () => {
-    switch (purpose) {
-      case CreditPurposes.HYPOTHEC:
-        return firstPay < CreditConstants.RATE_LIMIT[purpose] ? CreditConstants.HYPOTHEC_RATES[0] : CreditConstants.HYPOTHEC_RATES[1];
-
-      case CreditPurposes.AUTO: {
-        const check = true;
-
-        switch (check) {
-          case (casco && life): return CreditConstants.AUTO_RATES[0];
-          case (casco || life): return CreditConstants.AUTO_RATES[1];
-          case (price >= CreditConstants.RATE_LIMIT[purpose]): return CreditConstants.AUTO_RATES[2];
-          case (price < CreditConstants.RATE_LIMIT[purpose]): return CreditConstants.AUTO_RATES[3];
-          // case (!casco && !life && price >= CreditConstants.RATE_LIMIT[purpose]): return CreditConstants.AUTO_RATES[2];
-          // case (!casco && !life && price < CreditConstants.RATE_LIMIT[purpose]): return CreditConstants.AUTO_RATES[3];
-
-          default: return;
-        }
-      }
-
-      default: return;
-    }
-  };
-
   const handlePriceChange = (value) => {
     setPrice(value);
-    setFirstPayTotal(Math.floor(value * firstPay));
-  }
+    handleFirstPayTotalChange(Math.floor(value * firstPay));
+    setIsInputCorrect(value >= CreditConstants.PRICE_MIN[purpose] && value <= CreditConstants.PRICE_MAX[purpose]);
+  };
 
   const handleFirstPayTotalChange = (value) => {
+    const rate = ((value / price) * 100) / 100;
     setFirstPayTotal(value);
-    setFirstPay(Math.max(Math.floor((value / price) * 100) / 100), CreditConstants.FIRST_PAY_MIN[purpose]);
+    isNaN(rate) || rate === Infinity || rate === 0 ? setFirstPay(CreditConstants.FIRST_PAY_MIN[purpose]) : setFirstPay(Math.max(rate, CreditConstants.FIRST_PAY_MIN[purpose]));
   };
 
   const handleFirstPayChange = (value) => {
@@ -90,72 +98,43 @@ const CalculateForm = () => {
   };
 
   const handleMinusClick = () => {
-    handlePriceChange(price - CreditConstants.PRICE_STEP[purpose] >= CreditConstants.PRICE_MIN[purpose] ? price - CreditConstants.PRICE_STEP[purpose] : CreditConstants.PRICE_MIN[purpose]);
-    // priceInput.current.focus();
-    dispatch(ActionCreator.setCredit(calculateCredit()));
+    const currentPrice = price - CreditConstants.PRICE_STEP[purpose] >= CreditConstants.PRICE_MIN[purpose] ? price - CreditConstants.PRICE_STEP[purpose] : CreditConstants.PRICE_MIN[purpose];
+    handlePriceChange(currentPrice);
   };
 
   const handlePlusClick = () => {
-    handlePriceChange(price + CreditConstants.PRICE_STEP[purpose]);
-    // priceInput.current.focus();
-    dispatch(ActionCreator.setCredit(calculateCredit()));
-  };
-
-  const handleMotherMoneyChange = (evt) => {
-    setMother(evt.target.checked);
-    dispatch(ActionCreator.setCredit(calculateCredit()));
-  };
-
-  const checkPrice = (value) => {
-    const correctPrice = getCorrectValue(getNum(value), CreditConstants.PRICE_MIN[purpose], CreditConstants.PRICE_MAX[purpose]);
-
-    handlePriceChange(correctPrice);
-    dispatch(ActionCreator.setCredit(calculateCredit()));
+    const currentPrice = price + CreditConstants.PRICE_STEP[purpose] <= CreditConstants.PRICE_MAX[purpose] ? price + CreditConstants.PRICE_STEP[purpose] : CreditConstants.PRICE_MAX[purpose];
+    handlePriceChange(currentPrice);
   };
 
   const checkFirstPay = (value) => {
-    // const firstPayCorrect = getCorrectValue(getNum(value), Math.floor(CreditConstants.FIRST_PAY_MIN[purpose] * price), Math.floor(getMaxFirstPay() * price));
     const firstPayCorrect = getCorrectValue(getNum(value), Math.floor(CreditConstants.FIRST_PAY_MIN[purpose] * price), price);
     handleFirstPayTotalChange(Math.floor(firstPayCorrect));
-    dispatch(ActionCreator.setCredit(calculateCredit()));
-    dispatch(ActionCreator.setRate(calculateRate()));
   };
 
-  const checkTime = (value) => setTime(getCorrectValue(getNum(value), CreditConstants.TIME_MIN[purpose], CreditConstants.TIME_MAX[purpose]));
-
-  const handleKeyUp = (evt, wordForms) => {
-    const cursorPos = evt.target.value.length - getWordForm(getNum(evt.target.value), wordForms).length - 1;
-    if (evt.target.selectionStart > cursorPos) {
-      evt.target.selectionStart = cursorPos;
-      evt.target.selectionEnd = cursorPos;
-    }
-  };
-
-  const handleFocus = (evt) => {
-    evt.target.selectionStart = 0;
-    evt.target.selectionEnd = 0;
+  const checkTime = (value) => {
+    setTime(getCorrectValue(getNum(value), CreditConstants.TIME_MIN[purpose], CreditConstants.TIME_MAX[purpose]));
   };
 
   return (
-    <form className="calculate-form" method="post">
+    <form className="calculate-form" method="post" id="calculate">
       <div className="calculate-form__input-wrapper calculate-form__input-wrapper--price">
         <label className="calculate-form__label" htmlFor="price-field">{`Стоимость ${purpose === CreditPurposes.HYPOTHEC ? `недвижимости` : `автомобиля`}`}</label>
-        <input className="calculate-form__control calculate-form__control--input calculate-form__control--input-price" ref={priceInput} type="text" name="price" id="price-field" value={getMoney(price)} onChange={(evt) => handlePriceChange(getNum(evt.target.value))} onBlur={(evt) => checkPrice(evt.target.value)} onKeyUp={(evt) => handleKeyUp(evt, [`рубль`, `рубля`, `рублей`])} onFocus={(evt) => handleFocus(evt)} />
+        <NumberFormat className={`calculate-form__control calculate-form__control--input calculate-form__control--input-price${!isInputCorrect ? ` calculate-form__control--input-incorrect` : ``}`} value={price} displayType="input" thousandSeparator={` `} suffix={`${getWordForm(price, [` рубль`, ` рубля`, ` рублей`])}${!isInputCorrect ? `     Некорректное значение` : ``}`} id="price-field" name="price" onValueChange={(values) => handlePriceChange(values.floatValue)} />
         <p className="calculate-form__note">{`От ${getMoneyFormat(CreditConstants.PRICE_MIN[purpose])} до ${getMoney(CreditConstants.PRICE_MAX[purpose])}`}</p>
         <button className="calculate-form__input-btn calculate-form__input-btn--minus" type="button" onClick={() => handleMinusClick()}>&minus;</button>
         <button className="calculate-form__input-btn calculate-form__input-btn--plus" type="button" onClick={() => handlePlusClick()}>+</button>
       </div>
       <div className="calculate-form__input-wrapper">
         <label className="calculate-form__label" htmlFor="firstPay-field">Первоначальный взнос</label>
-        <input className="calculate-form__control calculate-form__control--input" type="text" name="firstPay" id="firstPay-field" value={`${getMoney(firstPayTotal)}`} onChange={(evt) => handleFirstPayTotalChange(getNum(evt.target.value))} onBlur={(evt) => checkFirstPay(evt.target.value)} onKeyUp={(evt) => handleKeyUp(evt, [`рубль`, `рубля`, `рублей`])} onFocus={(evt) => handleFocus(evt)} />
-        {/* <input className="calculate-form__control calculate-form__control--input calculate-form--range" type="range" value={firstPay} min={`${CreditConstants.FIRST_PAY_MIN[purpose]}`} max={getMaxFirstPay()} step={CreditConstants.FIRST_PAY_STEP[purpose]} name="range-firstPay" id="firstPay-range-field" onChange={(evt) => handleFirstPayChange(+evt.target.value)} /> */}
-        <input className="calculate-form__control calculate-form__control--input calculate-form--range" type="range" value={firstPay} min={`${CreditConstants.FIRST_PAY_MIN[purpose]}`} max={1} step={CreditConstants.FIRST_PAY_STEP[purpose]} name="range-firstPay" id="firstPay-range-field" onChange={(evt) => handleFirstPayChange(+evt.target.value)} onInput={(evt) => dispatch(ActionCreator.setRate(calculateRate()))} />
+        <NumberFormat className="calculate-form__control calculate-form__control--input" value={firstPayTotal} displayType="input" thousandSeparator={` `} suffix={`${getWordForm(firstPayTotal, [` рубль`, ` рубля`, ` рублей`])}`} id="firstPay-field" name="firstPay" onValueChange={(values) => handleFirstPayTotalChange(values.floatValue)} onBlur={(evt) => checkFirstPay(evt.target.value)} />
+        <input className="calculate-form__control calculate-form__control--input calculate-form--range" type="range" value={firstPay} min={`${CreditConstants.FIRST_PAY_MIN[purpose]}`} max={1} step={CreditConstants.FIRST_PAY_STEP[purpose]} name="range-firstPay" id="firstPay-range-field" onChange={(evt) => handleFirstPayChange(+evt.target.value)} />
         <label className="calculate-form__note" htmlFor="firstPay-range-field">{`${Math.floor(firstPay * 100)}%`}</label>
       </div>
       <div className="calculate-form__input-wrapper">
         <label className="calculate-form__label" htmlFor="time-field">Срок кредитования</label>
-        <input className="calculate-form__control calculate-form__control--input" type="text" value={`${time} ${getWordForm(time, [`год`, `года`, `лет`])}`} name="time" id="time-field" onChange={(evt) => setTime(getNum(evt.target.value))} onBlur={(evt) => checkTime(evt.target.value)} onKeyUp={(evt) => handleKeyUp(evt, [`год`, `года`, `лет`])} />
-        <input className="calculate-form__control calculate-form__control--input calculate-form--range" type="range" value={time} min={`${CreditConstants.TIME_MIN[purpose]}`} max={`${CreditConstants.TIME_MAX[purpose]}`} name="range-time" id="time-range-field" onChange={(evt) => setTime(evt.target.value)} />
+        <NumberFormat className="calculate-form__control calculate-form__control--input" value={time} displayType="input" suffix={`${getWordForm(time, [` год`, ` года`, ` лет`])}`} id="time-field" name="time" onValueChange={(values) => setTime(values.floatValue)} onBlur={(evt) => checkTime(evt.target.value)} />
+        <input className="calculate-form__control calculate-form__control--input calculate-form--range" type="range" value={time} min={`${CreditConstants.TIME_MIN[purpose]}`} max={`${CreditConstants.TIME_MAX[purpose]}`} name="range-time" id="time-range-field" onChange={(evt) => setTime(+evt.target.value)} />
         <label className="calculate-form__note calculate-form__note--two-notes" htmlFor="firstPay-range-field">
           <span>{`${CreditConstants.TIME_MIN[purpose]} ${getWordForm(CreditConstants.TIME_MIN[purpose], [`год`, `года`, `лет`])}`}</span>
           <span>{`${CreditConstants.TIME_MAX[purpose]} ${getWordForm(CreditConstants.TIME_MAX[purpose], [`год`, `года`, `лет`])}`}</span>
@@ -163,7 +142,7 @@ const CalculateForm = () => {
       </div>
       {purpose === CreditPurposes.HYPOTHEC &&
         <div className="calculate-form__input-wrapper calculate-form__input-wrapper--checkbox">
-          <input className="visually-hidden" type="checkbox" checked={mother} name="mother" id="mother-field" onChange={(evt) => handleMotherMoneyChange(evt)}></input>
+          <input className="visually-hidden" type="checkbox" checked={mother} name="mother" id="mother-field" onChange={(evt) => setMother(evt.target.checked)}></input>
           <label className="calculate-form__label calculate-form__label--checkbox" htmlFor="mother-field">Использовать материнский капитал</label>
         </div>}
       {purpose === CreditPurposes.AUTO &&

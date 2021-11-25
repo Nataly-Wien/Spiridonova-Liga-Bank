@@ -11,11 +11,8 @@
   }
 
   @media (max-width: $tablet-width - 1) {
-
-  }
-
-  @media (max-width: $tablet-mobile-intermediate - 1) {
-
+    margin-top: 53px;
+    padding-bottom: 110px;
   }
 }
 
@@ -30,6 +27,12 @@
 
     margin-bottom: 28px;
   }
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    @include font(700, 22px, 31px);
+
+    margin-bottom: 20px;
+  }
 }
 
 .credit-calc__sub-title {
@@ -42,6 +45,12 @@
     @include font(500, 18px, 25px);
 
     margin-bottom: 18px;
+  }
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    @include font(500, 16px, 22px);
+
+    margin-bottom: 10px;
   }
 }
 

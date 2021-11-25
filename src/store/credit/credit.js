@@ -5,7 +5,7 @@ const initialState = {
   purpose: CreditPurposes.NONE,
   credit: 0,
   rate: 0,
-  month: 0,
+  monthPay: 0,
   income: 0,
 };
 
@@ -26,10 +26,10 @@ const credit = (state = initialState, action) => {
         ...state,
         rate: action.payload,
       };
-    case ActionType.SET_MONTH:
+    case ActionType.SET_MONTH_PAY:
       return {
         ...state,
-        month: action.payload,
+        monthPay: action.payload,
       };
     case ActionType.SET_INCOME:
       return {

@@ -4,7 +4,8 @@ import Header from '../header/header';
 import Slider from '../slider/slider';
 import Tabs from '../tabs/tabs';
 import CreditCalculator from '../credit-calculator/credit-calculator';
-// import Footer from '../footer/footer';
+import DepartmentMap from '../department-map/department-map';
+import Footer from '../footer/footer';
 import Modal from '../modal/modal';
 
 const MainPage = () => {
@@ -16,8 +17,9 @@ const MainPage = () => {
         <Slider />
         <Tabs />
         <CreditCalculator />
+        <DepartmentMap />
       </main>
-      {/* <Footer /> */}
+      <Footer />
       <Modal />
     </div >
   );

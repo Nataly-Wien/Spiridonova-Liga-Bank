@@ -9,7 +9,7 @@ const MainMenu = () => {
       {MAIN_MENU_ITEMS.map((item) => {
         return (
           <li className="main-menu__item menu-link" key={`${item}`}>
-            <a className={`main-menu__link${item === CURRENT_PAGE ? ` main-menu__link--current-page` : ``}`} href="#">{item}</a>
+            <a className={`main-menu__link${item === CURRENT_PAGE ? ` main-menu__link--current-page` : ``}`} href={item === CURRENT_PAGE ? null : `#`}>{item}</a>
           </li>
         );
       })}

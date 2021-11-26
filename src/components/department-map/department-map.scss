@@ -1,0 +1,73 @@
+@import "../../sass/variables.scss";
+
+.department-map {
+  margin-bottom: 115px;
+
+  @media (max-width: $desktop-width - 1) {
+    margin-bottom: 85px;
+  }
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    margin-bottom: 67px;
+  }
+}
+
+.map {
+  width: 1170px;
+  height: 462px;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: url('../../img/map.jpg');
+
+  @media (max-width: $content-width - 1) {
+    width: 829px;
+    height: 462px;
+  }
+
+  @media (max-width: $desktop-width - 1) {
+    width: 678px;
+    height: 462px;
+    background-position: 80% center;
+  }
+
+  @media (max-width: $tablet-width - 1) {
+    width: 578px;
+    height: 462px;
+  }
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    width: 320px;
+    height: 381px;
+    background-position: center;
+  }
+
+  @media (max-width: 340px) {
+    margin-left: -15px;
+    margin-right:- 15px;
+  }
+}
+
+.map__map {
+  width: 1170px;
+  height: 462px;
+
+  @media (max-width: $content-width - 1) {
+    width: 829px;
+    height: 462px;
+  }
+
+  @media (max-width: $desktop-width - 1) {
+    width: 678px;
+    height: 462px;
+  }
+
+  @media (max-width: $tablet-width - 1) {
+    width: 578px;
+    height: 462px;
+  }
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    width: 320px;
+    height: 381px;
+  }
+}

@@ -43,11 +43,15 @@
   display: block;
   color: $dark;
 
-  &--current-page {
-    opacity: 0.9;
+  &:hover{
+    opacity: 0.6;
   }
 
-  &:hover{
-    opacity: 0.5;
+  &--current-page {
+    opacity: 0.9;
+
+    &:hover{
+      opacity: 0.9;
+    }
   }
 }

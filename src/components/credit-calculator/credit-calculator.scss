@@ -3,35 +3,16 @@
 
 .credit-calc {
   margin-top: 95px;
-  padding-bottom: 110px;
+  padding-bottom: 58px;
 
   @media (max-width: $desktop-width - 1) {
     margin-top: 68px;
-    padding-bottom: 110px;
+    padding-bottom: 70px;
   }
 
   @media (max-width: $tablet-width - 1) {
     margin-top: 53px;
-    padding-bottom: 110px;
-  }
-}
-
-.credit-calc__title {
-  @include reset-indent;
-  @include font(700, 41px, 57px);
-
-  margin-bottom: 50px;
-
-  @media (max-width: $desktop-width - 1) {
-    @include font(700, 32px, 45px);
-
-    margin-bottom: 28px;
-  }
-
-  @media (max-width: $tablet-mobile-intermediate - 1) {
-    @include font(700, 22px, 31px);
-
-    margin-bottom: 20px;
+    padding-bottom: 53px;
   }
 }
 
@@ -44,7 +25,7 @@
   @media (max-width: $desktop-width - 1) {
     @include font(500, 18px, 25px);
 
-    margin-bottom: 18px;
+    margin-bottom: 15px;
   }
 
   @media (max-width: $tablet-mobile-intermediate - 1) {

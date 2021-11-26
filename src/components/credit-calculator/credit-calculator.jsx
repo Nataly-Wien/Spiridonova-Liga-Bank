@@ -17,7 +17,7 @@ const CreditCalculator = () => {
 
   return (
     <section className="credit-calc container" id="#credit-calculator">
-      <h2 className="credit-calc__title">Кредитный калькулятор</h2>
+      <h2 className="credit-calc__title title">Кредитный калькулятор</h2>
       <div className="credit-calc__wrapper">
         <div>
           <h3 className="credit-calc__sub-title">Шаг 1. Цель кредита</h3>

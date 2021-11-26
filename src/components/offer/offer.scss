@@ -9,10 +9,11 @@
 
   @media (max-width: $desktop-width - 1) {
     margin-top: 0;
+    padding: 60px;
   }
 
   @media (max-width: $tablet-mobile-intermediate - 1) {
-    padding: 37px 15px 40px;
+    padding: 33px 15px 40px;
   }
 }
 

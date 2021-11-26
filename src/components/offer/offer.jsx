@@ -34,7 +34,7 @@ const Offer = () => {
             <p className="offer__name">Необходимый доход</p>
           </div>
         </div>
-        <button className="offer__button button button--blue">Оформить заявку</button>
+        <button className="offer__button button button--blue" type="button">Оформить заявку</button>
       </React.Fragment>}
       {!isOffer && <p className="offer__note">Попробуйте использовать другие параметры&nbsp;для&nbsp;расчёта.</p>}
     </div>

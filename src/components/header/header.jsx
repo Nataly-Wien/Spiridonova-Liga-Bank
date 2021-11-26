@@ -1,11 +1,10 @@
 import './header.scss';
 import React, {useState, useEffect, useRef} from 'react';
+import Logo from '../logo/logo';
 import MainMenu from '../main-menu/main-menu';
 import UserNav from '../user-nav/user-nav';
 import {useScrollBlock} from '../../hooks/use-scroll-block';
-import logoDesktop from './../../img/logo_ligabank_desktop.svg';
-import logoTablet from './../../img/logo_ligabank_tablet.svg';
-import logoMobile from './../../img/logo_ligabank_mobile.svg';
+import {LogoTypes} from '../../const';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -52,13 +51,7 @@ const Header = () => {
         <button className={"header__menu-button"} type="button" aria-label="Меню сайта" ref={firstFocusTarget} onClick={() => handleMobileMenuOpenClose(true)}>
           <span></span>
         </button>
-        <a className="header__logo" href="#">
-          <picture>
-            <source media="(min-width: 1024px)" srcSet={logoDesktop} />
-            <source media="(min-width: 768px)" srcSet={logoTablet} />
-            <img className="header__logo-img" src={logoMobile} alt="Логотип Лига Банка" />
-          </picture>
-        </a>
+        <Logo type={LogoTypes.HEADER} />
         <div className={`header__wrapper${isMobileMenuOpen ? ` header__wrapper--open` : ``}`}>
           <div className={`header__menu${!isMobileMenuOpen ? ` header__menu--hidden` : ``}`}>
             <MainMenu />

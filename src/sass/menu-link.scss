@@ -1,6 +1,7 @@
 .menu-link {
   display: block;
   padding: 15px 5px;
+  color: $dark;
 
   @media (max-width: $desktop-width - 1) {
     padding: 0;

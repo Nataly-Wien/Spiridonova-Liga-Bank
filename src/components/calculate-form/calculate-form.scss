@@ -108,23 +108,7 @@
 }
 
 .calculate-form__control {
-  font-family: inherit;
-  height: 60px;
   margin-bottom: 5px;
-  border: 1px solid $dark;
-  border-radius: 4px;
-  color: $dark;
-
-  &--input {
-    @include font(500, 18px, 25px);
-
-    padding: 13px 40px;
-    text-align: center;
-
-    @media (max-width: $desktop-width - 1) {
-      @include font(500, 16px, 22px);
-    }
-  }
 
   &--input-incorrect {
     background-color: $error;

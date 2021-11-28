@@ -1,7 +1,7 @@
 @import "../../sass/variables.scss";
 
 .department-map {
-  margin-bottom: 115px;
+  margin-bottom: 110px;
 
   @media (max-width: $desktop-width - 1) {
     margin-bottom: 85px;
@@ -9,6 +9,12 @@
 
   @media (max-width: $tablet-mobile-intermediate - 1) {
     margin-bottom: 67px;
+  }
+}
+
+.department-map__title {
+  @media (min-width: $desktop-width) {
+    margin-bottom: 57px;
   }
 }
 

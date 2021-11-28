@@ -1,0 +1,155 @@
+@import "../../sass/variables.scss";
+@import "../../sass/mixins.scss";
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-10px);
+    transform-origin: 0% 100%;
+    transform: rotate(-2deg);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(10px);
+    transform-origin: 100% 100%;
+    transform: rotate(2deg);
+  }
+}
+
+.bid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 770px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 95px;
+  padding: 70px;
+  padding-top: 63px;
+  background-color:  $title-light;
+
+  &--invalid {
+    animation-name: shake;
+    animation-duration: 0.8s;
+  }
+
+  @media (max-width: $desktop-width - 1) {
+    background-color: $white;
+    margin-bottom: 26px;
+    padding: 0;
+    padding-top: 55px;
+    width: 100%;
+  }
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    padding-top: 12px;
+  }
+
+}
+
+.bid__sub-title {
+  margin-bottom: 23px;
+
+  @media (max-width: $desktop-width - 1) {
+    margin-bottom: 38px;
+  }
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    margin-bottom: 35px;
+  }
+}
+
+.bid__string-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 11px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid $form-line;
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    margin-bottom: 14px;
+  }
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+}
+
+.bid__value {
+  @include reset-indent;
+  @include font(500, 22px, 31px);
+
+  @media (max-width: $tablet-mobile-intermediate + 1) {
+    @include font(500, 18px, 25px);
+  }
+}
+
+.bid__name {
+  @include reset-indent;
+  @include font(400, 16px, 22px);
+
+  color: $form-label;
+
+  @media (max-width: $tablet-mobile-intermediate + 1) {
+    @include font(400, 16px, 22px);
+  }
+}
+
+.bid__input-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  @media (max-width: $tablet-mobile-intermediate + 1) {
+    flex-direction: column;
+  }
+}
+
+.bid__input {
+  margin-bottom: 28px;
+  width: 47.5%;
+  padding: 13px 25px;
+  text-align: start;
+
+  @media (max-width: $tablet-mobile-intermediate + 1) {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  &--name {
+    width: 100%;
+    margin-top: 20px;
+
+    @media (max-width: $tablet-mobile-intermediate + 1) {
+      margin-top: 15px;
+    }
+  }
+
+  &::placeholder {
+    color: $footer-darkgrey;
+  }
+}
+
+.bid__button {
+  @include font(500, 16px, 22px);
+
+  margin-top: 13px;
+  padding: 15px 60px 14px;
+
+  @media (max-width: $desktop-width - 1) {
+    width: 100%;
+  }
+
+  @media (max-width: $tablet-mobile-intermediate + 1) {
+    @include font(500, 14px, 20px);
+
+    margin-top: 9px;
+    padding: 15px 60px 16px;
+  }
+}

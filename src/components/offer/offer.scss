@@ -4,16 +4,19 @@
 .offer {
   height: min-content;
   margin-top: 6px;
-  padding: 53px 57px 60px;
+  padding: 55px 57px 60px;
   background-color: $title-light;
 
   @media (max-width: $desktop-width - 1) {
     margin-top: 0;
     padding: 60px;
+    padding-top: 55px;
+    margin-bottom: 10px;
   }
 
   @media (max-width: $tablet-mobile-intermediate - 1) {
     padding: 33px 15px 40px;
+    margin-bottom: 0;
   }
 }
 
@@ -71,6 +74,8 @@
   @include reset-indent;
   @include font(400, 16px, 22px);
 
+  color: $form-label;
+
   @media (max-width: $tablet-mobile-intermediate + 1) {
     @include font(400, 16px, 22px);
   }
@@ -81,6 +86,7 @@
 
   width: 100%;
   margin-top: 10px;
+  padding-bottom: 14px;
 
   @media (max-width: $tablet-mobile-intermediate + 1) {
     @include font(500, 14px, 20px);

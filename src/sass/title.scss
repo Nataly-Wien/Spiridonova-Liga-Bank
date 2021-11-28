@@ -16,3 +16,22 @@
     margin-bottom: 20px;
   }
 }
+
+.sub-title {
+  @include reset-indent;
+  @include font(500, 22px, 31px);
+
+  margin-bottom: 20px;
+
+  @media (max-width: $desktop-width - 1) {
+    @include font(500, 18px, 25px);
+
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    @include font(500, 16px, 22px);
+
+    margin-bottom: 10px;
+  }
+}

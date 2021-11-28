@@ -3,12 +3,11 @@
 
 .header {
   padding-top: 20px;
-  padding-bottom: 22px;
+  padding-bottom: 20px;
   background-color: $background-gray;
 
   @media (max-width: $desktop-width - 1) {
     padding-top: 16px;
-    padding-bottom: 20px;
   }
 
   @media (max-width: $tablet-width - 1) {

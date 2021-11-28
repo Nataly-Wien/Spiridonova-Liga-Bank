@@ -29,15 +29,15 @@ const Modal = () => {
     }
   };
 
-  useEffect(() => {
-    document.addEventListener(`keydown`, handleKeydown);
-    document.addEventListener(`mousedown`, handleMouseDown);
+  // useEffect(() => {
+  //   document.addEventListener(`keydown`, handleKeydown);
+  //   document.addEventListener(`mousedown`, handleMouseDown);
 
-    return () => {
-      document.removeEventListener(`keydown`, handleKeydown);
-      document.removeEventListener(`mousedown`, handleMouseDown);
-    };
-  });
+  //   return () => {
+  //     document.removeEventListener(`keydown`, handleKeydown);
+  //     document.removeEventListener(`mousedown`, handleMouseDown);
+  //   };
+  // });
 
   useEffect(() => {
     modalType && blockScroll();

@@ -1,0 +1,112 @@
+@import "../../sass/variables.scss";
+@import "../../sass/mixins.scss";
+
+.message-modal {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+  background-color: $title-light;
+  padding: 50px;
+  padding-top: 52px;
+  border-radius: 4px;
+
+  @media (max-width: $desktop-width - 1) {
+    width: 678px;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    width: 100%;
+    margin: 15px;
+    padding: 35px 15px;
+  }
+}
+
+.message-modal__subtitle {
+  @include reset-indent;
+  @include font(500, 22px, 31px);
+
+  margin-bottom: 13px;
+  text-align: center;
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    @include font(500, 18px, 25px);
+  }
+}
+
+.message-modal__message {
+  @include reset-indent;
+  @include font(400, 16px, 22px);
+
+  text-align: center;
+  color: $form-label;
+
+  @media (max-width: $desktop-width - 1) {
+    width: 65%;
+  }
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    width: 100%;
+  }
+}
+
+.message-modal__close-btn {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+  &::before,
+  &::after {
+    @include pseudo;
+
+    right: -30px;
+    top: -18px;
+    width: 25px;
+    height: 2px;
+    background-color: $dark;
+
+    @media (max-width: $desktop-width - 1) {
+      right: -25px;
+      top: -12px;
+    }
+
+    @media (max-width: $tablet-mobile-intermediate - 1) {
+      right: -38px;
+      top: -30px;
+      width: 18px;
+    }
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: 1px solid $footer-darkgrey;
+  }
+
+  &:hover::before,
+  &:focus::before,
+  &:active::before,
+  &:hover::after,
+  &:focus::after,
+  &:active::after {
+    background-color: $dark;
+  }
+}

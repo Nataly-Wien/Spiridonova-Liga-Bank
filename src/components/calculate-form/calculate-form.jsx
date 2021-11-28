@@ -3,10 +3,10 @@ import React, {useState, useEffect} from 'react';
 import {ActionCreator} from '../../store/action';
 import {useSelector, useDispatch} from 'react-redux';
 import NumberFormat from 'react-number-format';
-import {CreditPurposes, CreditConstants, getWordForm, getMoney, getMoneyFormat, getNum} from '../../const';
+import {CreditPurposes, CreditConstants, PurposeConstants, getWordForm, getTerm, getMoney, getMoneyFormat, getNum} from '../../const';
 
 const CalculateForm = () => {
-  const purpose = useSelector((state) => state.CREDIT.purpose);
+  const purpose = useSelector((state) => state.CREDIT_CALC.purpose);
   const dispatch = useDispatch();
 
   const [price, setPrice] = useState(CreditConstants.PRICE_INITIAL[purpose]);
@@ -76,6 +76,9 @@ const CalculateForm = () => {
     dispatch(ActionCreator.setRate(currentRate));
     dispatch(ActionCreator.setMonthPay(currentMonthPay));
     dispatch(ActionCreator.setIncome(currentIncome));
+    dispatch(ActionCreator.setPrice(price));
+    dispatch(ActionCreator.setFirstPay(firstPayTotal));
+    dispatch(ActionCreator.setTime(time));
   };
 
   const getCorrectValue = (value, min, max) => Math.min(Math.max(min, value), max);
@@ -119,25 +122,25 @@ const CalculateForm = () => {
   return (
     <form className="calculate-form" method="post" id="calculate">
       <div className="calculate-form__input-wrapper calculate-form__input-wrapper--price">
-        <label className="calculate-form__label" htmlFor="price-field">{`Стоимость ${purpose === CreditPurposes.HYPOTHEC ? `недвижимости` : `автомобиля`}`}</label>
-        <NumberFormat className={`calculate-form__control calculate-form__control--input calculate-form__control--input-price${!isInputCorrect ? ` calculate-form__control--input-incorrect` : ``}`} value={price} displayType="input" thousandSeparator={` `} suffix={`${getWordForm(price, [` рубль`, ` рубля`, ` рублей`])}${!isInputCorrect ? `     Некорректное значение` : ``}`} id="price-field" name="price" onValueChange={(values) => handlePriceChange(values.floatValue)} />
+        <label className="calculate-form__label" htmlFor="price-field">{PurposeConstants[purpose][1]}</label>
+        <NumberFormat className={`calculate-form__control calculate-form__control--input-price input${!isInputCorrect ? ` calculate-form__control--input-incorrect` : ``}`} value={price} displayType="input" thousandSeparator={` `} suffix={`${getWordForm(price, [` рубль`, ` рубля`, ` рублей`])}${!isInputCorrect ? `     Некорректное значение` : ``}`} id="price-field" name="price" onValueChange={(values) => handlePriceChange(values.floatValue)} />
         <p className="calculate-form__note">{`От ${getMoneyFormat(CreditConstants.PRICE_MIN[purpose])} до ${getMoney(CreditConstants.PRICE_MAX[purpose])}`}</p>
         <button className="calculate-form__input-btn calculate-form__input-btn--minus" type="button" onClick={() => handleMinusClick()}>&minus;</button>
         <button className="calculate-form__input-btn calculate-form__input-btn--plus" type="button" onClick={() => handlePlusClick()}>+</button>
       </div>
       <div className="calculate-form__input-wrapper">
         <label className="calculate-form__label" htmlFor="firstPay-field">Первоначальный взнос</label>
-        <NumberFormat className="calculate-form__control calculate-form__control--input" value={firstPayTotal} displayType="input" thousandSeparator={` `} suffix={`${getWordForm(firstPayTotal, [` рубль`, ` рубля`, ` рублей`])}`} id="firstPay-field" name="firstPay" onValueChange={(values) => handleFirstPayTotalChange(values.floatValue)} onBlur={(evt) => checkFirstPay(evt.target.value)} />
-        <input className="calculate-form__control calculate-form__control--input calculate-form--range" type="range" value={firstPay} min={`${CreditConstants.FIRST_PAY_MIN[purpose]}`} max={1} step={CreditConstants.FIRST_PAY_STEP[purpose]} name="range-firstPay" id="firstPay-range-field" onChange={(evt) => handleFirstPayChange(+evt.target.value)} />
+        <NumberFormat className="calculate-form__control input" value={firstPayTotal} displayType="input" thousandSeparator={` `} suffix={`${getWordForm(firstPayTotal, [` рубль`, ` рубля`, ` рублей`])}`} id="firstPay-field" name="firstPay" onValueChange={(values) => handleFirstPayTotalChange(values.floatValue)} onBlur={(evt) => checkFirstPay(evt.target.value)} />
+        <input className="calculate-form__control" type="range" value={firstPay} min={`${CreditConstants.FIRST_PAY_MIN[purpose]}`} max={1} step={CreditConstants.FIRST_PAY_STEP[purpose]} name="range-firstPay" id="firstPay-range-field" onChange={(evt) => handleFirstPayChange(+evt.target.value)} />
         <label className="calculate-form__note" htmlFor="firstPay-range-field">{`${Math.floor(firstPay * 100)}%`}</label>
       </div>
       <div className="calculate-form__input-wrapper">
         <label className="calculate-form__label" htmlFor="time-field">Срок кредитования</label>
-        <NumberFormat className="calculate-form__control calculate-form__control--input" value={time} displayType="input" suffix={`${getWordForm(time, [` год`, ` года`, ` лет`])}`} id="time-field" name="time" onValueChange={(values) => setTime(values.floatValue)} onBlur={(evt) => checkTime(evt.target.value)} />
-        <input className="calculate-form__control calculate-form__control--input calculate-form--range" type="range" value={time} min={`${CreditConstants.TIME_MIN[purpose]}`} max={`${CreditConstants.TIME_MAX[purpose]}`} name="range-time" id="time-range-field" onChange={(evt) => setTime(+evt.target.value)} />
+        <NumberFormat className="calculate-form__control input" value={time} displayType="input" suffix={`${getWordForm(time, [` год`, ` года`, ` лет`])}`} id="time-field" name="time" onValueChange={(values) => setTime(values.floatValue)} onBlur={(evt) => checkTime(evt.target.value)} />
+        <input className="calculate-form__control" type="range" value={time} min={`${CreditConstants.TIME_MIN[purpose]}`} max={`${CreditConstants.TIME_MAX[purpose]}`} name="range-time" id="time-range-field" onChange={(evt) => setTime(+evt.target.value)} />
         <label className="calculate-form__note calculate-form__note--two-notes" htmlFor="firstPay-range-field">
-          <span>{`${CreditConstants.TIME_MIN[purpose]} ${getWordForm(CreditConstants.TIME_MIN[purpose], [`год`, `года`, `лет`])}`}</span>
-          <span>{`${CreditConstants.TIME_MAX[purpose]} ${getWordForm(CreditConstants.TIME_MAX[purpose], [`год`, `года`, `лет`])}`}</span>
+          <span>{`${getTerm(CreditConstants.TIME_MIN[purpose])}`}</span>
+          <span>{`${getTerm(CreditConstants.TIME_MAX[purpose])}`}</span>
         </label>
       </div>
       {purpose === CreditPurposes.HYPOTHEC &&

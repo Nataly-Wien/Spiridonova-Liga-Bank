@@ -102,6 +102,23 @@ export const getTabsIcon = (name) => {
   }
 };
 
+export const PopupTypes = {
+  ENTER: `ENTER`,
+  THANKS: `THANKS`,
+}
+
+export const MODAL_POPUPS = {
+  enter: {
+    link: `.login-form`,
+  },
+  thanks: {
+    title: `Спасибо${`\u00a0`}за${`\u00a0`}обращение в${`\u00a0`}наш${`\u00a0`}
+    банк.`,
+    text: `Наш${`\u00a0`}менеджер${`\u00a0`}скоро${`\u00a0`}свяжется с${`\u00a0`}вами по${`\u00a0`}указанному номеру телефона.`,
+    link: `.message-modal`,
+  },
+};
+
 export const SOCIAL_DATA = [
   {
     title: `Услуги`,
@@ -142,6 +159,12 @@ export const CreditPurposes = {
   NONE: `Выберите цель кредита`,
   HYPOTHEC: `Ипотечное кредитование`,
   AUTO: `Автомобильное кредитование`,
+};
+
+export const PurposeConstants = {
+  [CreditPurposes.NONE]: [``, ``],
+  [CreditPurposes.HYPOTHEC]: [`Ипотека`, `Стоимость недвижимости`],
+  [CreditPurposes.AUTO]: [`Автомобиль`, `Стоимость автомобиля`],
 };
 
 export const CreditConstants = {
@@ -195,27 +218,20 @@ export const CreditConstants = {
   INCOME_LIMIT: 0.45,
 };
 
-
-
-export const PopupTypes = {
-  ENTER: `ENTER`,
-  THANKS: `THANKS`,
-}
-
-export const MODAL_POPUPS = {
-  enter: {
-    link: `.login-form`,
-  },
-  thanks: {
-    title: `Спасибо за обращение в наш банк.`,
-    text: `Наш менеджер скоро свяжется с вами по указанному номеру телефона.`,
-    link: `.message-modal`,
-  },
-};
-
 export const emptyUser = {
   login: ``,
   password: ``,
+};
+
+export const emptyCredit = {
+  purpose: CreditPurposes.NONE,
+  price: 0,
+  firstPay: 0,
+  time: 0,
+  credit: 0,
+  rate: 0,
+  monthPay: 0,
+  income: 0,
 };
 
 export const getWordForm = (number, wordForms) => {
@@ -229,3 +245,4 @@ export const getMoneyFormat = (number) => number.toString().split(``).reverse().
 export const getMoney = (number) => `${getMoneyFormat(number)} ${getWordForm(number, [`рубль`, `рубля`, `рублей`])}`;
 export const getNum = (string) => +string.replace(/[^0-9]/g, ``);
 export const getCommaFormat = (string) => string.replace(`.`, `,`);
+export const getTerm = (number) => `${number} ${getWordForm(number, [`год`, `года`, `лет`])}`;

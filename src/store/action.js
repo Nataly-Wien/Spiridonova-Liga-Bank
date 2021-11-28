@@ -1,14 +1,21 @@
 export const ActionType = {
   SHOW_MODAL: `appearance/showModal`,
   HIDE_MODAL: `appearance/hideModal`,
+  SET_BID_SHOW: `appearance/setBidSHow`,
 
   SET_USER: `user/setUser`,
 
-  SET_PURPOSE: `credit/setPurpose`,
-  SET_CREDIT: `credit/setCredit`,
-  SET_RATE: `credit/setRate`,
-  SET_MONTH_PAY: `credit/setMonthPay`,
-  SET_INCOME: `credit/setIncome`,
+  SET_PRICE: `creditCalc/setPrice`,
+  SET_FIRST_PAY: `creditCalc/setFirstPay`,
+  SET_TIME: `creditCalc/setTime`,
+  SET_PURPOSE: `creditCalc/setPurpose`,
+  SET_CREDIT: `creditCalc/setCredit`,
+  SET_RATE: `creditCalc/setRate`,
+  SET_MONTH_PAY: `creditCalc/setMonthPay`,
+  SET_INCOME: `creditCalc/setIncome`,
+
+  ADD_BID: `bid/addBid`,
+  SET_BID_NUMBER: `bid/setBidNumber`,
 };
 
 export const ActionCreator = {
@@ -21,6 +28,11 @@ export const ActionCreator = {
     type: ActionType.HIDE_MODAL,
   }),
 
+  setBidSHow: (payload) => ({
+    type: ActionType.SET_BID_SHOW,
+    payload,
+  }),
+
   setUser: (payload) => ({
     type: ActionType.SET_USER,
     payload,
@@ -28,6 +40,21 @@ export const ActionCreator = {
 
   setPurpose: (payload) => ({
     type: ActionType.SET_PURPOSE,
+    payload,
+  }),
+
+  setPrice: (payload) => ({
+    type: ActionType.SET_PRICE,
+    payload,
+  }),
+
+  setFirstPay: (payload) => ({
+    type: ActionType.SET_FIRST_PAY,
+    payload,
+  }),
+
+  setTime: (payload) => ({
+    type: ActionType.SET_TIME,
     payload,
   }),
 
@@ -48,6 +75,16 @@ export const ActionCreator = {
 
   setIncome: (payload) => ({
     type: ActionType.SET_INCOME,
+    payload,
+  }),
+
+  addBid: (payload) => ({
+    type: ActionType.ADD_BID,
+    payload,
+  }),
+
+  setBidNumber: (payload) => ({
+    type: ActionType.SET_BID_NUMBER,
     payload,
   }),
 };

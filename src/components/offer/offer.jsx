@@ -1,14 +1,16 @@
 import './offer.scss';
 import React from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {ActionCreator} from '../../store/action';
 import {CreditConstants, getMoney, getCommaFormat} from '../../const';
 
 const Offer = () => {
-  const purpose = useSelector((state) => state.CREDIT.purpose);
-  const credit = useSelector((state) => state.CREDIT.credit);
-  const rate = useSelector((state) => state.CREDIT.rate);
-  const monthPay = useSelector((state) => state.CREDIT.monthPay);
-  const income = useSelector((state) => state.CREDIT.income);
+  const purpose = useSelector((state) => state.CREDIT_CALC.purpose);
+  const credit = useSelector((state) => state.CREDIT_CALC.credit);
+  const rate = useSelector((state) => state.CREDIT_CALC.rate);
+  const monthPay = useSelector((state) => state.CREDIT_CALC.monthPay);
+  const income = useSelector((state) => state.CREDIT_CALC.income);
+  const dispatch = useDispatch();
 
   const isOffer = credit !== 0 && credit >= CreditConstants.MIN_CREDIT[purpose];
 
@@ -34,7 +36,7 @@ const Offer = () => {
             <p className="offer__name">Необходимый доход</p>
           </div>
         </div>
-        <button className="offer__button button button--blue" type="button">Оформить заявку</button>
+        <button className="offer__button button button--blue" type="button" onClick={() => dispatch(ActionCreator.setBidSHow(true))}>Оформить заявку</button>
       </React.Fragment>}
       {!isOffer && <p className="offer__note">Попробуйте использовать другие параметры&nbsp;для&nbsp;расчёта.</p>}
     </div>

@@ -2,52 +2,31 @@
 @import "../../sass/mixins.scss";
 
 .purpose-select {
-  position: relative;
-  margin-bottom: 33px;
-
-  &::before {
-    @include pseudo;
-
-    width: 30px;
-    height: 18px;
-    top: 25px;
-    right: 13px;
-    background-image: url("../../img/select-caret.svg");
-    background-repeat: no-repeat;
-    cursor: pointer;
-
-    @media (max-width: $tablet-mobile-intermediate - 1) {
-      width: 19px;
-      height: 9px;
-    }
-  }
-
-  @media (max-width: $desktop-width - 1) {
-    margin-top: 18px;
-    margin-bottom: 33px;
-  }
-
-  @media (max-width: $tablet-mobile-intermediate - 1) {
-    margin-top: 16px;
-    margin-bottom: 25px;
-  }
-}
-
-.purpose-select__select {
   @include font(500, 16px, 22px);
 
   height: 60px;
   width: 100%;
+  padding: 12px 19px;
+  margin-bottom: 35px;
   font-family: inherit;
   border: 1px solid $dark;
   border-radius: 4px;
   color: $dark;
   background-color: $white;
-  padding: 12px 19px;
+  background-image: url("../../img/select-caret.svg");
+  background-position: right 22px top 25px;
+  background-repeat: no-repeat;
   appearance: none;
   cursor: pointer;
 
+  @media (max-width: $desktop-width - 1) {
+    margin-top: 5px;
+    margin-bottom: 36px;
+  }
+
   @media (max-width: $tablet-mobile-intermediate - 1) {
+    margin-bottom: 23px;
     padding: 12px 10px;
+    background-size: 18px 8px;
   }
 }

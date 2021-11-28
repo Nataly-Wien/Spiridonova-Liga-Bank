@@ -3,6 +3,7 @@ import {ActionType} from '../action';
 const initialState = {
   modalType: null,
   modalProps: {},
+  isBidShow: false,
 };
 
 const appearance = (state = initialState, action) => {
@@ -14,13 +15,18 @@ const appearance = (state = initialState, action) => {
         modalProps: action.payload.modalProps,
       };
 
-    case ActionType.HIDE_MODAL: {
+    case ActionType.HIDE_MODAL:
       return {
         ...state,
         modalType: null,
         modalProps: {},
-      }
-    }
+      };
+
+    case ActionType.SET_BID_SHOW:
+      return {
+        ...state,
+        isBidShow: action.payload,
+      };
 
     default: return state;
   }

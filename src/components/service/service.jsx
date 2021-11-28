@@ -15,8 +15,8 @@ const Service = ({title, features, text, textLink, buttonText, buttonRef, tabNum
           })}
         </ul>}
         {text && <p className="service__text">{text}<a className="service__text-link" href={`#${buttonRef}`}>{textLink}</a></p>}
-        {buttonText && <a className={"service__button button button--blue"} href={`#${buttonRef}`}>{buttonText}</a>}
       </div>
+      {buttonText && <a className={"service__button button button--blue"} href={`#${buttonRef}`}>{buttonText}</a>}
     </div >
   );
 };

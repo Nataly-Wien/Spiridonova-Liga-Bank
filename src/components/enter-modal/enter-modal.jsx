@@ -10,14 +10,17 @@ const EnterModal = ({onCloseClick}) => {
     password: ``,
   };
 
+  const inputRefs = {
+    login: useRef(null),
+    password: useRef(null),
+  };
+
   const [inputs, setInputs] = useState(EMPTY_INPUTS);
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   const [isExitWithSaving, setIsExitWithSaving] = useState(false);
 
   const firstFocusTarget = useRef(null);
   const lastFocusTarget = useRef(null);
-  const loginField = useRef(null);
-  const passwordField = useRef(null);
 
   const dispatch = useDispatch();
 
@@ -30,38 +33,34 @@ const EnterModal = ({onCloseClick}) => {
   useEffect(() => {
     setInputs(EMPTY_INPUTS);
 
-    if (loginField.current) {
-      loginField.current.focus();
+    if (inputRefs.login.current) {
+      inputRefs.login.current.focus();
     }
   }, [isExitWithSaving]);
 
-  const getNewInputValues = (name, value) => {
+  const handleInputChange = (evt, fieldName) => setInputs({
+    ...inputs,
+    [fieldName]: evt.target.value,
+  });
 
-    const newState = {
-      ...inputs,
-    };
+  const validateInput = (inputName, isInvalid) => {
+    if (!inputs[inputName].trim()) {
+      setInputs({
+        ...inputs,
+        [inputName]: ``,
+      });
 
-    newState[name] = value;
+      isInvalid = true;
+      inputRefs[inputName].current.focus();
+    }
 
-    return newState;
+    return isInvalid;
   };
-
-  const handleInputChange = (evt, fieldName) => setInputs(getNewInputValues(fieldName, evt.target.value));
 
   const handleFormSubmit = (evt) => {
     evt.preventDefault();
 
-    if (!inputs.login.trim()) {
-      setInputs(getNewInputValues(`login`, ``));
-      loginField.current.focus();
-      return;
-    }
-
-    if (!inputs.password.trim()) {
-      setInputs(getNewInputValues(`password`, ``));
-      passwordField.current.focus();
-      return;
-    }
+    if (Object.keys(inputs).reduce((isInvalid, item) => validateInput(item, isInvalid), false)) return; //проверка на текстовые поля с одними пробелами
 
     setIsExitWithSaving(true);
     dispatch(ActionCreator.setUser(inputs));
@@ -92,11 +91,11 @@ const EnterModal = ({onCloseClick}) => {
       </div>
       <p className="login-form__input-wrapper">
         <label className="login-form__label" htmlFor="login-field">Логин</label>
-        <input className="login-form__control login-form__control--input login-form__control--input-name" ref={loginField} type="text" name="login" id="login-field" value={inputs.login} onChange={(evt) => handleInputChange(evt, `login`)} required={true} />
+        <input className="login-form__control login-form__control--input login-form__control--input-name" ref={inputRefs.login} type="text" name="login" id="login-field" value={inputs.login} onChange={(evt) => handleInputChange(evt, `login`)} required={true} />
       </p>
       <p className="login-form__input-wrapper login-form__input-wrapper--password">
         <label className="login-form__label" htmlFor="login-field">Пароль</label>
-        <input className="login-form__control login-form__control--input login-form__control--input-password" type={`${isPasswordVisible ? `text` : `password`}`} name="password" id="password-field" value={inputs.password} onChange={(evt) => handleInputChange(evt, `password`)} required={true} ref={passwordField} />
+        <input className="login-form__control login-form__control--input login-form__control--input-password" type={`${isPasswordVisible ? `text` : `password`}`} name="password" id="password-field" value={inputs.password} onChange={(evt) => handleInputChange(evt, `password`)} required={true} ref={inputRefs.password} />
         <button className={`login-form__input-button login-form__input-button--${isPasswordVisible ? `visible` : `hidden`}`} onMouseDown={() => setPasswordVisible(true)} onMouseUp={() => setPasswordVisible(false)} tabIndex="-1"></button>
         <a className="login-form__link" href="#" onClick={() => onCloseClick()}>Забыли пароль?</a>
       </p>

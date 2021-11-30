@@ -1,6 +1,7 @@
 import './bid-form.scss';
 import React, {useState, useEffect, useRef} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import NumberFormat from 'react-number-format';
 import {ActionCreator} from '../../store/action';
 import {CreditPurposes, PurposeConstants, getMoney, getTerm, MODAL_POPUPS, PopupTypes} from '../../const';
 
@@ -19,6 +20,7 @@ const BidForm = () => {
 
   const [inputs, setInputs] = useState(EMPTY_INPUTS);
   const [isExitWithSaving, setIsExitWithSaving] = useState(false);
+  const [isFieldFocused, setIsFieldFocused] = useState(false);
   const [isFormInvalid, setIsFormInvalid] = useState(false);
 
   const purpose = useSelector((state) => state.CREDIT_CALC.purpose);
@@ -29,10 +31,10 @@ const BidForm = () => {
 
   const dispatch = useDispatch();
 
-  const handleInputChange = (evt, fieldName) => {
+  const handleInputChange = (value, fieldName) => {
     setInputs({
       ...inputs,
-      [fieldName]: evt.target.value,
+      [fieldName]: value,
     });
     setIsFormInvalid(false);
   };
@@ -43,15 +45,17 @@ const BidForm = () => {
     }
   };
 
+  const isTelNumberValid = (string) => string.replace(/[^0-9]/g, ``).length === 11;
+
   const validateInput = (inputName, isInvalid) => {
-    if (!inputs[inputName].trim()) {
+    if ((inputName !== `tel` && !inputs[inputName].trim()) || (inputName === `tel` && !isTelNumberValid(inputs[inputName]))) {
       setInputs({
         ...inputs,
         [inputName]: ``,
       });
 
-      isInvalid = true;
       inputRefs[inputName].current.focus();
+      isInvalid = true;
     }
 
     return isInvalid;
@@ -63,7 +67,9 @@ const BidForm = () => {
     const isInvalid = Object.keys(inputs).reverse().reduce((isInvalid, item) => validateInput(item, isInvalid), false);
     setIsFormInvalid(isInvalid);
 
-    if (isInvalid) return;
+    if (isInvalid) {
+      return;
+    };
 
     setIsExitWithSaving(true);
 
@@ -111,11 +117,8 @@ const BidForm = () => {
     return () => {
       document.removeEventListener(`keydown`, handleKeydown);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isExitWithSaving, purpose]);
-
-  useEffect(() => {
-
-  }, [isFormInvalid]);
 
   return (
     <form className={`bid${isFormInvalid ? ` bid--invalid` : ``}`} action="https://echo.htmlacademy.ru/" method="post" onSubmit={(evt) => handleFormSubmit(evt)}>
@@ -141,12 +144,12 @@ const BidForm = () => {
         <p className="bid__name">Срок кредитования</p>
       </div>
       <label className="visually-hidden" htmlFor="name-field">ФИО</label>
-      <input className="bid__input bid__input--name input" type="text" value={inputs.name} ref={inputRefs.name} id="name-field" name="name" placeholder="ФИО" onChange={(evt) => handleInputChange(evt, `name`)} ></input>
+      <input className="bid__input bid__input--name input" type="text" value={inputs.name} ref={inputRefs.name} id="name-field" name="name" placeholder="ФИО" onChange={(evt) => handleInputChange(evt.target.value, `name`)} ></input>
       <div className="bid__input-wrapper">
         <label className="visually-hidden" htmlFor="tel-field">Телефон</label>
-        <input className="bid__input input" type="text" value={inputs.tel} id="tel-field" ref={inputRefs.tel} name="tel" placeholder="Телефон" onChange={(evt) => handleInputChange(evt, `tel`)} ></input>
+        <NumberFormat className="bid__input input" format="+7(###)###-##-##" allowEmptyFormatting={isFieldFocused} mask="_" type="tel" value={inputs.tel} id="tel-field" getInputRef={inputRefs.tel} name="tel" placeholder="Телефон" onValueChange={(values) => handleInputChange(values.formattedValue, `tel`)} onFocus={() => setIsFieldFocused(true)} onBlur={() => setIsFieldFocused(false)} />
         <label className="visually-hidden" htmlFor="email-field">E-mail</label>
-        <input className="bid__input input" type="text" value={inputs.email} ref={inputRefs.email} id="email-field" name="email" placeholder="E-mail" onChange={(evt) => handleInputChange(evt, `email`)} ></input>
+        <input className="bid__input input" type="email" value={inputs.email} ref={inputRefs.email} id="email-field" name="email" placeholder="E-mail" onChange={(evt) => handleInputChange(evt.target.value, `email`)} ></input>
       </div>
       <button className="bid__button button button--blue" type="submit">Отправить</button>
     </form>

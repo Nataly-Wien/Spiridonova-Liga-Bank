@@ -53,6 +53,10 @@
     font-size: 14px;
     line-height: 16px;
   }
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    margin: 22px 15px 15px;
+  }
 }
 
 .user-nav__icon {

@@ -1,6 +1,7 @@
 import './department-map.scss';
 import React from 'react';
 import {YMaps, Map, Placemark} from 'react-yandex-maps';
+import ScrollableAnchor from 'react-scrollable-anchor'
 import pin from './../../img/location.svg';
 
 const DepartmentMap = () => {
@@ -25,16 +26,18 @@ const DepartmentMap = () => {
   };
 
   return (
-    <section className="department-map container">
-      <h2 className="department-map__title title">Отделения Лига Банка</h2>
-      <div className="department-map_wrapper map">
-        <YMaps>
-          <Map className="map__map" defaultState={mapData}>
-            {coordinates.map((coordinate) => <Placemark geometry={coordinate} options={pinOptions} key={coordinate} />)}
-          </Map>
-        </YMaps>
-      </div>
-    </section>
+    <ScrollableAnchor id={`link2`} >
+      <section className="department-map container">
+        <h2 className="department-map__title title">Отделения Лига Банка</h2>
+        <div className="department-map__wrapper map">
+          <YMaps>
+            <Map className="map__map" defaultState={mapData}>
+              {coordinates.map((coordinate) => <Placemark geometry={coordinate} options={pinOptions} key={coordinate} />)}
+            </Map>
+          </YMaps>
+        </div>
+      </section>
+    </ScrollableAnchor>
   );
 };
 

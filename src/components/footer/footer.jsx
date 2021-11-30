@@ -25,12 +25,12 @@ const Footer = () => {
           <h3 className="visually-hidden">Контакты</h3>
           <div className="footer__contact-block footer__contact-block--mobile">
             <span className="visually-hidden">Короткий номер</span>
-            <p className="footer__contact">*0904</p>
+            <a className="footer__contact footer__contact--link" href="tel:0904">*0904</a>
             <p className="footer__text">Бесплатно для абонентов МТС, Билайн, Мегафон, Теле2</p>
           </div>
           <div className="footer__contact-block footer__contact-block--phone">
             <span className="visually-hidden">Телефон</span>
-            <p className="footer__contact">8 800 111 22 33</p>
+            <a className="footer__contact footer__contact--link" href="tel:88001112233">8 800 111 22 33</a>
             <p className="footer__text">Бесплатный для&nbsp;всех городов России</p>
           </div>
         </section>

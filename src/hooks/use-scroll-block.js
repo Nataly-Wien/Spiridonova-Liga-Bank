@@ -1,32 +1,28 @@
 import {useRef} from 'react';
 
-const originalOverflow = window.getComputedStyle(document.body).overflow;
-const originalPaddingRight = window.getComputedStyle(document.body).paddingRight;
-const scrollWidth = window.innerWidth - document.documentElement.clientWidth;
-// console.log(window.innerWidth, document.documentElement.clientWidth, scrollWidth);
+const safeDocument = typeof document !== `undefined` ? document : {};
 
 export const useScrollBlock = () => {
   const scrollBlocked = useRef();
+  const html = safeDocument.documentElement;
+  const {body} = safeDocument;
+  const originalOverflow = window.getComputedStyle(document.body).overflow;
+  const bodyPaddingRight = parseInt(window.getComputedStyle(body).getPropertyValue("padding-right")) || 0;
 
   const blockScroll = () => {
-    if (scrollBlocked.current) {
-      return
-    };
+    if (!body || !body.style || scrollBlocked.current) return;
 
-    document.body.style.overflow = `hidden`;
-    document.body.style.paddingRight = `${parseInt(originalPaddingRight) + scrollWidth}px`;
-
+    const scrollBarWidth = window.innerWidth - html.clientWidth;
+    body.style.overflow = `hidden`;
+    body.style.paddingRight = `${bodyPaddingRight + scrollBarWidth}px`;
     scrollBlocked.current = true;
   };
 
   const allowScroll = () => {
-    if (!scrollBlocked.current) {
-      return
-    };
+    if (!body || !body.style || !scrollBlocked.current) return;
 
-    document.body.style.overflow = originalOverflow;
-    document.body.style.paddingRight = originalPaddingRight;
-
+    body.style.overflow = originalOverflow;
+    body.style.paddingRight = `${bodyPaddingRight}px`;
     scrollBlocked.current = false;
   };
 

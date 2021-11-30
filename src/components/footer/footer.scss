@@ -183,6 +183,10 @@
   @include font(500, 16px, 23px);
 
   margin: 0;
+
+  &--link {
+    color: $dark;
+  }
 }
 
 .footer__social {

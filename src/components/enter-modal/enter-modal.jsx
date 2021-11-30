@@ -36,6 +36,7 @@ const EnterModal = ({onCloseClick}) => {
     if (inputRefs.login.current) {
       inputRefs.login.current.focus();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isExitWithSaving]);
 
   const handleInputChange = (evt, fieldName) => setInputs({
@@ -60,7 +61,9 @@ const EnterModal = ({onCloseClick}) => {
   const handleFormSubmit = (evt) => {
     evt.preventDefault();
 
-    if (Object.keys(inputs).reduce((isInvalid, item) => validateInput(item, isInvalid), false)) return; //проверка на текстовые поля с одними пробелами
+    if (Object.keys(inputs).reduce((isInvalid, item) => validateInput(item, isInvalid), false)) {
+      return;
+    };
 
     setIsExitWithSaving(true);
     dispatch(ActionCreator.setUser(inputs));
@@ -81,6 +84,11 @@ const EnterModal = ({onCloseClick}) => {
     }
   };
 
+  const handleEyeButtonDown = (evt) => {
+    evt.preventDefault();
+    setPasswordVisible(true);
+  }
+
   return (
     <form className="login-form" action="https://echo.htmlacademy.ru/" method="post" name="review" onKeyDown={handleKeydown} onSubmit={handleFormSubmit}>
       <div className="login-form__logo-wrapper">
@@ -96,7 +104,7 @@ const EnterModal = ({onCloseClick}) => {
       <p className="login-form__input-wrapper login-form__input-wrapper--password">
         <label className="login-form__label" htmlFor="login-field">Пароль</label>
         <input className="login-form__control login-form__control--input login-form__control--input-password" type={`${isPasswordVisible ? `text` : `password`}`} name="password" id="password-field" value={inputs.password} onChange={(evt) => handleInputChange(evt, `password`)} required={true} ref={inputRefs.password} />
-        <button className={`login-form__input-button login-form__input-button--${isPasswordVisible ? `visible` : `hidden`}`} onMouseDown={() => setPasswordVisible(true)} onMouseUp={() => setPasswordVisible(false)} tabIndex="-1"></button>
+        <button className={`login-form__input-button login-form__input-button--${isPasswordVisible ? `visible` : `hidden`}`} type="button" onMouseDown={(evt) => handleEyeButtonDown(evt)} onMouseUp={() => setPasswordVisible(false)} tabIndex="-1"></button>
         <a className="login-form__link" href="#" onClick={() => onCloseClick()}>Забыли пароль?</a>
       </p>
       <button className="login-form__send-btn button button--blue" type="submit">Войти</button>

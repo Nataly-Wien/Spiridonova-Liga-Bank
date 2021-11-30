@@ -9,17 +9,23 @@ const Slider = () => {
   const [currentSlide, setCurrentSlide] = useState(CURRENT_SLIDE);
   const [scrollRef, handleScroll] = useSwipeScrollOffset(setCurrentSlide);
 
-  const handleSliderButtonClick = (button) => setCurrentSlide(button);
-
   const getNextSlide = () => {
     currentSlide < SLIDER_LENGTH - 1 ? setCurrentSlide(currentSlide + 1) : setCurrentSlide(0);
   };
 
-  // useEffect(() => {
-  //   const timer = setInterval(getNextSlide, 4000);
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({
+        left: document.documentElement.clientWidth * currentSlide,
+        behavior: `smooth`,
+      });
+    }
 
-  //   return () => clearInterval(timer);
-  // });
+    const timer = setInterval(getNextSlide, 4000);
+
+    return () => clearInterval(timer);
+  });
+
 
   return (
     <section className={`slider slider--slide${currentSlide + 1}`} >
@@ -31,7 +37,7 @@ const Slider = () => {
           );
         })}
       </div>
-      <SliderControls type={SliderTypes.SLIDER} currentSlide={currentSlide} onButtonClick={handleSliderButtonClick} />
+      <SliderControls type={SliderTypes.SLIDER} currentSlide={currentSlide} onButtonClick={(btn) => setCurrentSlide(btn)} />
     </section >
   );
 };

@@ -27,10 +27,12 @@ const CalculateForm = () => {
     setMother(false);
     setCasco(false);
     setLife(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [purpose]);
 
   useEffect(() => {
     calculateOffer();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [price, firstPay, time, mother, casco, life]);
 
 

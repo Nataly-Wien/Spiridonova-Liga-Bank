@@ -1,7 +1,22 @@
 import './message-modal.scss';
-import React from 'react';
+import React, {useEffect} from 'react';
 
 const MessageModal = ({title, text, onCloseClick}) => {
+
+  const handleKeydown = (evt) => {
+    if (evt.key === 'Tab') {
+      evt.preventDefault();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener(`keydown`, handleKeydown);
+
+    return () => {
+      document.removeEventListener(`keydown`, handleKeydown);
+    };
+  });
+
   return (
     <div className="message-modal">
       <h3 className="message-modal__subtitle">{title}</h3>

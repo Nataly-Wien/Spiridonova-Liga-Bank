@@ -29,15 +29,15 @@ const Modal = () => {
     }
   };
 
-  // useEffect(() => {
-  //   document.addEventListener(`keydown`, handleKeydown);
-  //   document.addEventListener(`mousedown`, handleMouseDown);
+  useEffect(() => {
+    document.addEventListener(`keydown`, handleKeydown);
+    document.addEventListener(`mousedown`, handleMouseDown);
 
-  //   return () => {
-  //     document.removeEventListener(`keydown`, handleKeydown);
-  //     document.removeEventListener(`mousedown`, handleMouseDown);
-  //   };
-  // });
+    return () => {
+      document.removeEventListener(`keydown`, handleKeydown);
+      document.removeEventListener(`mousedown`, handleMouseDown);
+    };
+  });
 
   useEffect(() => {
     modalType && blockScroll();
@@ -45,6 +45,7 @@ const Modal = () => {
     return () => {
       allowScroll();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modalType]);
 
   if (!modalType) {

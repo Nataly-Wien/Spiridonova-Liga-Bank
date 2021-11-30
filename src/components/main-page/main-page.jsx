@@ -10,7 +10,7 @@ import Modal from '../modal/modal';
 
 const MainPage = () => {
   return (
-    <div className="page-main">
+    <div className="page-main page">
       <Header />
       <main>
         <h1 className="visually-hidden">Кредиты</h1>

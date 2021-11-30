@@ -1,6 +1,7 @@
 import './credit-calculator.scss';
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import ScrollableAnchor from 'react-scrollable-anchor'
 import {ActionCreator} from '../../store/action';
 import PurposeSelect from '../purpose-select/purpose-select';
 import CreditOptions from '../credit-options/credit-options';
@@ -18,22 +19,24 @@ const CreditCalculator = () => {
   }
 
   useEffect(() => {
-    console.log(purpose);
   }, [purpose]);
 
   return (
-    <section className="credit-calc container" id="#credit-calculator">
-      <h2 className="credit-calc__title title">Кредитный калькулятор</h2>
-      <div className="credit-calc__wrapper">
-        <div>
-          <h3 className="credit-calc__sub-title sub-title">Шаг 1. Цель кредита</h3>
-          <PurposeSelect purpose={purpose} onSelectChange={handlePurposeChange} />
-          {(purpose !== CreditPurposes.NONE) && <CreditOptions />}
+    <ScrollableAnchor id={`link1`} >
+      <section className="credit-calc container">
+        <h2 className="credit-calc__title title">Кредитный калькулятор</h2>
+        <div className="credit-calc__wrapper">
+          <div>
+            <h3 className="credit-calc__sub-title sub-title">Шаг 1. Цель кредита</h3>
+            <PurposeSelect purpose={purpose} onSelectChange={handlePurposeChange} />
+            {(purpose !== CreditPurposes.NONE) && <CreditOptions />}
+          </div>
+          {(purpose !== CreditPurposes.NONE) && <Offer />}
         </div>
-        {(purpose !== CreditPurposes.NONE) && <Offer />}
-      </div>
-      {(purpose !== CreditPurposes.NONE) && isBidShow && <BidForm />}
-    </section>
+        {(purpose !== CreditPurposes.NONE) && isBidShow && <BidForm />}
+      </section>
+    </ScrollableAnchor>
+
   );
 };
 

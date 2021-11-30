@@ -54,4 +54,9 @@
       opacity: 0.9;
     }
   }
+
+  @media (max-width: $tablet-mobile-intermediate - 1) {
+    padding: 25px 15px 10px;
+
+  }
 }

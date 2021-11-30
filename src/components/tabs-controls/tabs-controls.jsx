@@ -18,7 +18,8 @@ const TabControls = ({currentTab, onTabClick, onTabsScroll, children}) => {
                 <span className="tabs-controls__button-icon">{getTabsIcon(item.icon)}</span>
                 <span className="tabs-controls__button-text">{item.name}</span>
               </button>
-            </li>);
+            </li>
+          );
         })}
       </ul >
       <div className="tabs-controls__wrapper" ref={scrollRef} onScroll={() => handleScroll()}>
@@ -33,7 +34,6 @@ TabControls.propTypes = {
   onTabClick: PropTypes.func.isRequired,
   onTabsScroll: PropTypes.func.isRequired,
   children: PropTypes.array.isRequired,
-
 };
 
 export default TabControls;

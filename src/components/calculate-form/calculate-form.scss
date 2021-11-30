@@ -105,6 +105,10 @@
       right: 22px;
     }
   }
+
+  @media (max-width: $desktop-width - 1) {
+    top: 42px;
+  }
 }
 
 .calculate-form__control {

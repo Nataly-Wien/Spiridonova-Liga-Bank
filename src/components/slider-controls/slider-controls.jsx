@@ -11,12 +11,15 @@ const SliderControls = ({type, currentSlide, onButtonClick}) => {
 
     for (let i = 0; i < length; i++) {
       const legend = `${i + 1}-й слайд`;
-      buttons.push(<li className="slider-controls__item" key={legend}>
-        <button className={`slider-controls__button${i === current ? ` slider-controls__button--current` : ``}${type === SliderTypes.SLIDER && (current === 0 || current === 1) && i === current ? ` slider-controls__button--white` : ``}`}
-          type="button">
-          <span className="visually-hidden">{legend}</span>
-        </button>
-      </li>);
+
+      buttons.push(
+        <li className="slider-controls__item" key={legend}>
+          <button className={`slider-controls__button${i === current ? ` slider-controls__button--current` : ``}${type === SliderTypes.SLIDER && (current === 0 || current === 1) && i === current ? ` slider-controls__button--white` : ``}`}
+            type="button" onClick={() => onButtonClick(i)}>
+            <span className="visually-hidden">{legend}</span>
+          </button>
+        </li>
+      );
     }
 
     return buttons;

@@ -20,7 +20,7 @@ export const SLIDER_DATA = [
     title: `Лига Банк`,
     slogan: `Кредиты на любой случай`,
     buttonText: `Рассчитать кредит`,
-    buttonRef: `credit-calculator`,
+    buttonRef: `link1`,
   },
   {
     title: `Лига Банк`,
@@ -32,7 +32,7 @@ export const SLIDER_DATA = [
     title: `Лига Банк`,
     slogan: `Всегда рядом`,
     buttonText: `Найти отделение`,
-    buttonRef: `find-branch`,
+    buttonRef: `link2`,
   },
 ];
 
@@ -70,7 +70,7 @@ export const TABS_DATA = [
     text: `Рассчитайте ежемесячный платеж и${`\u00a0`}ставку по${`\u00a0`}кредиту воспользовавшись нашим `,
     textLink: `кредитным калькулятором`,
     buttonText: ``,
-    buttonRef: `credit-calculator`,
+    buttonRef: `link1`,
   },
   {
     title: `Лига Страхование — застрахуем все что${`\u00a0`}захотите`,

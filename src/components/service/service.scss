@@ -2,7 +2,7 @@
     @import "../../sass/mixins.scss";
 
     .service {
-      background-color: $title-light;
+      background-color: $background-gray;
       padding: 54px 135px 60px 70px;
       background-repeat: no-repeat;
 
@@ -172,6 +172,7 @@
       position: relative;
       margin-left: 20px;
       margin-bottom: 15px;
+      overflow-wrap: break-word;
       white-space: pre-wrap;
 
       @media (max-width: $tablet-mobile-intermediate - 1) {

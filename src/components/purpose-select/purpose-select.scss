@@ -6,7 +6,7 @@
 
   height: 60px;
   width: 100%;
-  padding: 12px 19px;
+  padding: 12px 20px;
   margin-bottom: 35px;
   font-family: inherit;
   border: 1px solid $dark;
@@ -27,6 +27,6 @@
   @media (max-width: $tablet-mobile-intermediate - 1) {
     margin-bottom: 23px;
     padding: 12px 10px;
-    background-size: 18px 8px;
+    background-position: right 13px top 24px;
   }
 }

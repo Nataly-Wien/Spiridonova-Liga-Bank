@@ -88,22 +88,24 @@
   z-index: 10;
   width: 40px;
   height: 40px;
-  top: 45px;
+  top: 42px;
   font-size: 30px;
+  line-height: 30px;
+  padding: 5px;
   background-color: transparent;
   color: $dark;
   border: none;
   cursor: pointer;
 
   &--minus {
-    left: 18px;
+    left: 12px;
   }
 
   &--plus {
-    right: 33px;
+    right: 14px;
 
     @media (max-width: $tablet-mobile-intermediate - 1) {
-      right: 22px;
+      right: 3px;
     }
   }
 }

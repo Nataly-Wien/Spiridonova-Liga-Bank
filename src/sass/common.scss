@@ -55,6 +55,11 @@ a {
     @media (max-width: $tablet-mobile-intermediate - 1) {
       padding-left: 15px;
       padding-right: 15px;
+
+      &--map {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
     }
 
     &--tabs {

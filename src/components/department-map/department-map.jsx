@@ -27,7 +27,7 @@ const DepartmentMap = () => {
 
   return (
     <ScrollableAnchor id={`link2`} >
-      <section className="department-map container">
+      <section className="department-map container container--map ">
         <h2 className="department-map__title title">Отделения Лига Банка</h2>
         <div className="department-map__wrapper map">
           <YMaps>

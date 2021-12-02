@@ -85,8 +85,9 @@
 
 .calculate-form__input-btn {
   position: absolute;
-  width: 16px;
-  height: 16px;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
   top: 45px;
   font-size: 30px;
   background-color: transparent;

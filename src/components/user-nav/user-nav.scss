@@ -56,6 +56,10 @@
 
   @media (max-width: $tablet-mobile-intermediate - 1) {
     margin: 22px 15px 15px;
+
+    &--without-text {
+      margin: 0;
+    }
   }
 }
 

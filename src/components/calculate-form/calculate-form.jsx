@@ -71,7 +71,8 @@ const CalculateForm = () => {
       // no default
     };
 
-    const currentMonthPay = Math.floor((currentCredit * currentRate) / (1 - (Math.pow(1 + currentRate, time * -12))));
+    const currentRateMonth = currentRate / 12;
+    const currentMonthPay = Math.floor((currentCredit * currentRateMonth) / (1 - (Math.pow(1 + currentRateMonth, time * -12))));
     const currentIncome = Math.floor(currentMonthPay / CreditConstants.INCOME_LIMIT);
 
     dispatch(ActionCreator.setCredit(currentCredit));

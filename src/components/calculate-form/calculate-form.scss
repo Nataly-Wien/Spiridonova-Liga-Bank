@@ -87,7 +87,7 @@
   position: absolute;
   width: 16px;
   height: 16px;
-  top: 37px;
+  top: 45px;
   font-size: 30px;
   background-color: transparent;
   color: $dark;
@@ -104,10 +104,6 @@
     @media (max-width: $tablet-mobile-intermediate - 1) {
       right: 22px;
     }
-  }
-
-  @media (max-width: $desktop-width - 1) {
-    top: 42px;
   }
 }
 

@@ -47,14 +47,6 @@
     opacity: 0.6;
   }
 
-  &--current-page {
-    opacity: 0.9;
-
-    &:hover{
-      opacity: 0.9;
-    }
-  }
-
   @media (max-width: $tablet-mobile-intermediate - 1) {
     padding: 25px 15px 10px;
 

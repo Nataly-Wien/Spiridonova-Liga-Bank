@@ -2,12 +2,16 @@
 @import "../../sass/variables.scss";
 
 .social {
-
   display: flex;
+  justify-content: flex-end;
   flex-wrap: wrap;
   align-items: flex-start;
   padding: 0;
   list-style: none;
+
+  @media (max-width: $desktop-width - 1) {
+    justify-content: flex-start;
+  }
 }
 
 .social__item {

@@ -1,6 +1,5 @@
 export const MAIN_MENU_ITEMS = [`Услуги`, `Рассчитать кредит`, `Конвертер валют`, `Контакты`];
 export const FOOTER_MENU_ITEMS = [`Услуги`, `Рассчитать кредит`, `Контакты`, `Задать вопрос`];
-export const CURRENT_PAGE = `Рассчитать кредит`;
 export const USER_NAV_ITEMS = [`Войти в Интернет-банк`];
 
 export const LogoTypes = {

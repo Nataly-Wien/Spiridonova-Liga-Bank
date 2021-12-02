@@ -2,7 +2,7 @@ import './footer.scss';
 import React from 'react';
 import Logo from '../logo/logo';
 import Social from '../social/social';
-import {FOOTER_MENU_ITEMS, CURRENT_PAGE, LogoTypes} from '../../const';
+import {FOOTER_MENU_ITEMS, LogoTypes} from '../../const';
 
 const Footer = () => {
   return (
@@ -17,7 +17,7 @@ const Footer = () => {
         <ul className="footer__menu footer-menu">
           {FOOTER_MENU_ITEMS.map((item, i) => {
             return (<li className="footer-menu__item" key={item}>
-              <a className={`footer-menu__link${item === CURRENT_PAGE ? ` footer-menu__link--current-page` : ``}`} href={item === CURRENT_PAGE ? null : `#`}>{item}</a>
+              <a className="footer-menu__link" href="#">{item}</a>
             </li>);
           })}
         </ul>

@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import {ActionCreator} from '../../store/action';
 import {useSelector, useDispatch} from 'react-redux';
 import NumberFormat from 'react-number-format';
-import {CreditPurposes, CreditConstants, PurposeConstants, getWordForm, getTerm, getMoney, getMoneyFormat, getNum} from '../../const';
+import {CreditPurposes, CreditConstants, PurposeConstants, getWordForm, getTerm, getMoney, getMoneyFormat, getNum, getCorrectValue} from '../../const';
 
 const CalculateForm = () => {
   const purpose = useSelector((state) => state.CREDIT_CALC.purpose);
@@ -84,8 +84,6 @@ const CalculateForm = () => {
     dispatch(ActionCreator.setTime(time));
   };
 
-  const getCorrectValue = (value, min, max) => Math.min(Math.max(min, value), max);
-
   const handlePriceChange = (value) => {
     setPrice(value);
     handleFirstPayTotalChange(Math.floor(value * firstPay));
@@ -122,11 +120,16 @@ const CalculateForm = () => {
     setTime(getCorrectValue(getNum(value), CreditConstants.TIME_MIN[purpose], CreditConstants.TIME_MAX[purpose]));
   };
 
+  const checkPrice = (value) => {
+    const correctPrice = getCorrectValue(getNum(value), CreditConstants.PRICE_MIN[purpose], CreditConstants.PRICE_MAX[purpose]);
+    handlePriceChange(correctPrice);
+  };
+
   return (
     <form className="calculate-form" method="post" id="calculate">
       <div className="calculate-form__input-wrapper calculate-form__input-wrapper--price">
         <label className="calculate-form__label" htmlFor="price-field">{PurposeConstants[purpose][1]}</label>
-        <NumberFormat className={`calculate-form__control calculate-form__control--input-price input${!isInputCorrect ? ` calculate-form__control--input-incorrect` : ``}`} value={price} displayType="input" thousandSeparator={` `} suffix={`${getWordForm(price, [` рубль`, ` рубля`, ` рублей`])}${!isInputCorrect ? `     Некорректное значение` : ``}`} id="price-field" name="price" onValueChange={(values) => handlePriceChange(values.floatValue)} />
+        <NumberFormat className={`calculate-form__control calculate-form__control--input-price input${!isInputCorrect ? ` calculate-form__control--input-incorrect` : ``}`} value={price} displayType="input" thousandSeparator={` `} suffix={`${getWordForm(price, [` рубль`, ` рубля`, ` рублей`])}`} id="price-field" name="price" onValueChange={(values) => handlePriceChange(values.floatValue)} onBlur={(evt) => checkPrice(evt.target.value)} />
         <p className="calculate-form__note">{`От ${getMoneyFormat(CreditConstants.PRICE_MIN[purpose])} до ${getMoney(CreditConstants.PRICE_MAX[purpose])}`}</p>
         <button className="calculate-form__input-btn calculate-form__input-btn--minus" type="button" onClick={() => handleMinusClick()}>&minus;</button>
         <button className="calculate-form__input-btn calculate-form__input-btn--plus" type="button" onClick={() => handlePlusClick()}>+</button>

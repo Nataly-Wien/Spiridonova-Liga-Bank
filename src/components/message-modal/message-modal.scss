@@ -18,7 +18,7 @@
     margin-bottom: 12px;
   }
 
-  @media (max-width: $tablet-mobile-intermediate - 1) {
+  @media (max-width: $tablet-width - 1) {
     width: 100%;
     margin: 15px;
     padding: 35px 15px;
@@ -32,8 +32,10 @@
   margin-bottom: 13px;
   text-align: center;
 
-  @media (max-width: $tablet-mobile-intermediate - 1) {
+  @media (max-width: $tablet-width - 1) {
     @include font(500, 18px, 25px);
+
+    width: 80%;
   }
 }
 
@@ -48,15 +50,15 @@
     width: 65%;
   }
 
-  @media (max-width: $tablet-mobile-intermediate - 1) {
+  @media (max-width: $tablet-width - 1) {
     width: 100%;
   }
 }
 
 .message-modal__close-btn {
   position: absolute;
-  right: 20px;
-  top: 17px;
+  right: 19px;
+  top: 16px;
   width: 30px;
   height: 30px;
   background-color: transparent;
@@ -69,16 +71,11 @@
 
     width: 25px;
     height: 2px;
+    right: 2px;
     background-color: $dark;
 
-    @media (max-width: $desktop-width - 1) {
-      right: -25px;
-      top: -12px;
-    }
-
-    @media (max-width: $tablet-mobile-intermediate - 1) {
-      right: -38px;
-      top: -30px;
+    @media (max-width: $tablet-width - 1) {
+      right: 5px;
       width: 18px;
     }
   }
@@ -106,5 +103,15 @@
   &:focus::after,
   &:active::after {
     background-color: $dark;
+  }
+
+  @media (max-width: $desktop-width - 1) {
+    right: 23px;
+    top: 21px;
+  }
+
+  @media (max-width: $tablet-width - 1) {
+    right: 7px;
+    top: 5px;
   }
 }

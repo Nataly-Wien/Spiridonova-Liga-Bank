@@ -3,57 +3,58 @@
 
     .service {
       background-color: $background-gray;
-      padding: 54px 135px 60px 70px;
+      padding: 54px 10% 60px 6%;
       background-repeat: no-repeat;
+      background-size: 38%;
 
       &--tab1 {
         background-image: url("../../img/piggy-desktop.jpg");
-        background-position: right 135px top 60px;
+        background-position: right 18% top 60px;
 
         @media (max-width: $desktop-width - 1) {
           background-image: url("../../img/piggy-tablet.jpg");
         }
 
-        @media (max-width: $tablet-mobile-intermediate - 1) {
+        @media (max-width: $tablet-width - 1) {
           background-image: url("../../img/piggy-mobile.jpg");
         }
       }
 
       &--tab2 {
         background-image: url("../../img/car-desktop.jpg");
-        background-position: right 135px top 55px;
+        background-position: right 18% top 55px;
 
         @media (max-width: $desktop-width - 1) {
           background-image: url("../../img/car-tablet.jpg");
         }
 
-        @media (max-width: $tablet-mobile-intermediate - 1) {
+        @media (max-width: $tablet-width - 1) {
           background-image: url("../../img/car-mobile.jpg");
         }
       }
 
       &--tab3 {
         background-image: url("../../img/lock-desktop.jpg");
-        background-position: right 135px top 50px;
+        background-position: right 18% top 50px;
 
         @media (max-width: $desktop-width - 1) {
           background-image: url("../../img/lock-tablet.jpg");
         }
 
-        @media (max-width: $tablet-mobile-intermediate - 1) {
+        @media (max-width: $tablet-width - 1) {
           background-image: url("../../img/lock-mobile.png");
         }
       }
 
       &--tab4 {
         background-image: url("../../img/phone-desktop.png");
-        background-position: right 135px top 52px;
+        background-position: right 18% top 52px;
 
         @media (max-width: $desktop-width - 1) {
           background-image: url("../../img/phone-tablet.png");
         }
 
-        @media (max-width: $tablet-mobile-intermediate - 1) {
+        @media (max-width: $tablet-width - 1) {
           background-image: url("../../img/phone-mobile.png");
         }
       }
@@ -64,17 +65,21 @@
         }
       }
 
-      @media (max-width: $tablet-width) {
-        padding: 54px 45px 50px 45px;
-        width: 100%;
+      @media (max-width: $desktop-width - 1) {
         flex-shrink: 0;
-        background-position: right 45px top 60px;
+        width: 100%;
+        padding: 54px 45px 50px 45px;
+        background-position: right 45px center;
         scroll-snap-align: start;
       }
 
-      @media (max-width: $tablet-mobile-intermediate - 1) {
+       @media (max-width: $tablet-width - 1) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         padding: 54px 15px 30px 15px;
-        background-position: right 0 top 98px;
+        background-position: right 0 top 40%;
+        background-size: 27%;
       }
     }
 
@@ -90,7 +95,7 @@
         margin-bottom: 23px;
       }
 
-      @media (max-width: $tablet-mobile-intermediate - 1) {
+      @media (max-width: $tablet-width - 1) {
         @include font(500, 16px, 22px);
       }
     }
@@ -103,7 +108,7 @@
           width: 55%;
         }
 
-        @media (max-width: $tablet-mobile-intermediate - 1) {
+        @media (max-width: $tablet-width - 1) {
           width: 95%;
         }
       }
@@ -115,7 +120,7 @@
           width: 48%;
         }
 
-        @media (max-width: $tablet-mobile-intermediate - 1) {
+        @media (max-width: $tablet-width - 1) {
           width: 87%;
         }
       }
@@ -127,7 +132,7 @@
           width: 45%;
         }
 
-        @media (max-width: $tablet-mobile-intermediate - 1) {
+        @media (max-width: $tablet-width - 1) {
           width: 90%;
         }
       }
@@ -139,8 +144,9 @@
           width: 50%;
         }
 
-        @media (max-width: $tablet-mobile-intermediate - 1) {
+        @media (max-width: $tablet-width - 1) {
           width: 95%;
+
           & .service__features-list {
             width: 82%;
           }
@@ -160,11 +166,11 @@
         margin-bottom: 26px;
       }
 
-      @media (max-width: $tablet-mobile-intermediate - 1) {
+      @media (max-width: $tablet-width - 1) {
         @include font(400, 14px, 18px);
 
         width: 85%;
-        margin-bottom: 21px;
+        margin-bottom: 0;
       }
     }
 
@@ -175,7 +181,7 @@
       overflow-wrap: break-word;
       white-space: pre-wrap;
 
-      @media (max-width: $tablet-mobile-intermediate - 1) {
+      @media (max-width: $tablet-width - 1) {
         margin-left: 15px;
         margin-bottom: 11px;
       }
@@ -189,7 +195,7 @@
         top: 6px;
         background-image: url("../../img/check-mark.svg");
 
-        @media (max-width: $tablet-mobile-intermediate - 1) {
+        @media (max-width: $tablet-width - 1) {
           width: 11px;
           height: 8px;
           left: -16px;
@@ -208,7 +214,7 @@
         padding-top: 2px;
       }
 
-      @media (max-width: $tablet-mobile-intermediate - 1) {
+      @media (max-width: $tablet-width - 1) {
         @include font(400, 14px, 20px);
       }
     }
@@ -223,7 +229,7 @@
         @include font(500, 16px, 22px);
       }
 
-      @media (max-width: $tablet-mobile-intermediate - 1) {
+      @media (max-width: $tablet-width - 1) {
         @include font(500, 14px, 20px);
       }
     }
@@ -239,10 +245,11 @@
         @include font(500, 16px, 19px);
       }
 
-      @media (max-width: $tablet-mobile-intermediate - 1) {
+      @media (max-width: $tablet-width - 1) {
         @include font(500, 14px, 16px);
 
         width: 100%;
+        margin-bottom: 30px;
         text-align: center;
       }
     }

@@ -2,10 +2,11 @@
 @import "../../sass/mixins.scss";
 
 .footer {
-  background-color: $background-gray;
+  margin-top: auto;
   padding-bottom: 60px;
+  background-color: $background-gray;
 
-  @media (max-width: $tablet-mobile-intermediate - 1) {
+  @media (max-width: $tablet-width - 1) {
     padding-bottom: 50px;
   }
 }
@@ -13,19 +14,24 @@
 .footer__wrapper {
   padding-top: 48px;
   display: grid;
-  grid-template-columns: 250px 150px auto 110px;
-  grid-template-columns: 21.5% 13% auto 9.8%;
   grid-template-rows: 42px auto;
-  grid-column-gap: 6.8%;
+  grid-template-columns: 21.5% max-content auto 9.8%;
+  column-gap: 6.8%;
   padding-right: 95px;
 
+  @media (max-width: $content-desktop-intermediate) {
+    grid-template-columns: 31% 22% 26% 13%;
+    column-gap: 20px;
+  }
+
   @media (max-width: $desktop-width - 1) {
-    grid-template-columns: 300px 200px;
-    grid-column-gap: 55px;
+    grid-template-rows: 42px auto;
+    grid-template-columns: 55% 41%;
+    column-gap: 4%;
     padding-right: 123px;
   }
 
-  @media (max-width: $tablet-mobile-intermediate - 1) {
+  @media (max-width: $tablet-width - 1) {
     display: flex;
     flex-direction: column;
     padding-top: 33px;
@@ -38,7 +44,7 @@
   grid-row-start: 1;
   grid-row-end: 2;
 
-  @media (max-width: $tablet-mobile-intermediate - 1) {
+  @media (max-width: $tablet-width - 1) {
     margin-bottom: 10px;
   }
 }
@@ -53,7 +59,7 @@
     padding-top: 5px;
   }
 
-  @media (max-width: $tablet-mobile-intermediate - 1) {
+  @media (max-width: $tablet-width - 1) {
     display: none;
   }
 }
@@ -79,7 +85,7 @@
     margin: 8px 0 16px -3px;
   }
 
-  @media (max-width: $tablet-mobile-intermediate - 1) {
+  @media (max-width: $tablet-width - 1) {
     @include font(500, 14px, 21px);
 
     margin-bottom: 5px;
@@ -129,7 +135,7 @@
     margin-bottom: 12px;
   }
 
-  @media (max-width: $tablet-mobile-intermediate - 1) {
+  @media (max-width: $tablet-width - 1) {
     margin-bottom: 6px;
   }
 
@@ -194,7 +200,7 @@
     margin-top: 0;
   }
 
-  @media (max-width: $tablet-mobile-intermediate - 1) {
+  @media (max-width: $tablet-width - 1) {
     margin-top: 12px;
   }
 }

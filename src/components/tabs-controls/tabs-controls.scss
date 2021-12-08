@@ -6,7 +6,7 @@
 }
 
 .tabs-controls__wrapper {
-  @media (max-width: $tablet-width) {
+  @media (max-width: $desktop-width - 1) {
     display: flex;
     max-width: 100%;
     min-height: 362px;
@@ -22,7 +22,7 @@
   flex-wrap: wrap;
 
   &--hidden {
-    @media (max-width: $tablet-width) {
+    @media (max-width: $desktop-width - 1) {
       display: none;
     }
   }
@@ -35,6 +35,7 @@
 .tabs-controls__button {
   @include font(500, 18px, 21px);
 
+  font-family: inherit;
   display: flex;
   justify-content: center;
   align-items: center;

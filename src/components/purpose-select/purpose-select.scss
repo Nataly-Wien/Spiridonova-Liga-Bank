@@ -21,11 +21,11 @@
 
   @media (max-width: $desktop-width - 1) {
     margin-top: 5px;
-    margin-bottom: 36px;
+    margin-bottom: 8px;
   }
 
-  @media (max-width: $tablet-mobile-intermediate - 1) {
-    margin-bottom: 23px;
+  @media (max-width: $tablet-width - 1) {
+    margin-bottom: 0;
     padding: 12px 10px;
     background-position: right 13px top 24px;
   }

@@ -7,7 +7,7 @@ import logoMobile from './../../img/logo_ligabank_mobile.svg';
 
 const Logo = ({type}) => {
   return (
-    <a className={`${type}__logo logo`} href="#">
+    <a className={`${type}__logo logo`}>
       <picture>
         <source media="(min-width: 1024px)" srcSet={logoDesktop} />
         <source media="(min-width: 768px)" srcSet={logoTablet} />

@@ -15,7 +15,7 @@ const SliderControls = ({type, currentSlide, onButtonClick}) => {
       buttons.push(
         <li className="slider-controls__item" key={legend}>
           <button className={`slider-controls__button${i === current ? ` slider-controls__button--current` : ``}${type === SliderTypes.SLIDER && (current === 0 || current === 1) && i === current ? ` slider-controls__button--white` : ``}`}
-            type="button" onClick={() => onButtonClick(i)}>
+            type="button" tabIndex="-1" onClick={() => onButtonClick(i)}>
             <span className="visually-hidden">{legend}</span>
           </button>
         </li>
@@ -26,11 +26,9 @@ const SliderControls = ({type, currentSlide, onButtonClick}) => {
   };
 
   return (
-    <div className={`slider-controls${type === SliderTypes.TABS ? ` slider-controls--hidden` : ``}`}>
-      <ul className={`slider-controls__list${type === SliderTypes.TABS ? ` slider-controls__list--tabs` : ``}`}>
-        {getControlButtons(sliderControlsLength, currentSlide)}
-      </ul>
-    </div >
+    <ul className={`slider-controls${type === SliderTypes.TABS ? ` slider-controls--tabs` : ``}`}>
+      {getControlButtons(sliderControlsLength, currentSlide)}
+    </ul>
   );
 };
 

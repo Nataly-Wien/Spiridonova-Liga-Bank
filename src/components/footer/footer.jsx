@@ -11,7 +11,7 @@ const Footer = () => {
         <Logo type={LogoTypes.FOOTER} />
         <div className="footer__text-wrapper">
           <p className="footer__text">150015, г. Москва, ул. Московская, д. 32</p>
-          <p className="footer__text">Генеральная лицензияБанка России №1050</p>
+          <p className="footer__text">Генеральная лицензия Банка России №1050</p>
           <p className="footer__text">Ⓒ Лига Банк, 2019</p>
         </div>
         <ul className="footer__menu footer-menu">

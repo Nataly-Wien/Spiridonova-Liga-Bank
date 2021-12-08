@@ -58,7 +58,7 @@ export const TABS = [
 export const TABS_DATA = [
   {
     title: `Вклады Лига Банка – это выгодная инвестиция в${`\u00a0`}свое будущее`,
-    features: [`Проценты по вкладам до 7%`, `Разнообразные условия`, `Возможность ежемесячной капитализации или вывод процентов на банковскую карту`],
+    features: [`Проценты по вкладам до 7%`, `Разнообразные условия`, `Возможность ежемесячной капитализации или${`\u00a0`}вывод процентов на банковскую карту`],
     text: ``,
     buttonText: `Узнать подробнее`,
     buttonRef: ``,
@@ -245,3 +245,4 @@ export const getMoney = (number) => `${getMoneyFormat(number)} ${getWordForm(num
 export const getNum = (string) => +string.replace(/[^0-9]/g, ``);
 export const getCommaFormat = (string) => string.replace(`.`, `,`);
 export const getTerm = (number) => `${number} ${getWordForm(number, [`год`, `года`, `лет`])}`;
+export const getCorrectValue = (value, min, max) => Math.min(Math.max(min, value), max);

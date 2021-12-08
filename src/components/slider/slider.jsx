@@ -32,8 +32,8 @@ const Slider = () => {
       <div className="slider__wrapper" ref={scrollRef} onScroll={() => handleScroll()}>
         {SLIDER_DATA.map((item, i) => {
           return (
-            <Slide title={item.title} slogan={item.slogan} buttonText={item.buttonText} buttonRef={item.buttonRef} slideNumber={i + 1}
-              currentSlide={currentSlide} key={`${item.title}-${item.slogan}-${item.buttonText}`} />
+            <Slide title={item.title} slogan={item.slogan} buttonText={item.buttonText} buttonRef={item.buttonRef}
+              slideNumber={i + 1} key={`${item.title}-${item.slogan}-${item.buttonText}`} />
           );
         })}
       </div>

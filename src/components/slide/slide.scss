@@ -2,29 +2,49 @@
 @import "../../sass/mixins.scss";
 
 .slide {
+  scroll-snap-align: start;
   min-height: 400px;
-  width: 100%;
+  width: 100vw;
   flex-shrink: 0;
+
+  @media (max-width: $desktop-width - 1) {
+    width: 100%;
+    min-height: 300px;
+  }
+
+  @media (max-width: $tablet-width - 1) {
+    min-height: 226px;
+  }
+}
+
+.slide__wrapper {
+  min-height: 400px;
   padding-top: 102px;
-  padding-left: 270px;
+  padding-left: 261px;
   background-repeat: no-repeat;
 
-  &--hidden {
-    @media (min-width: $tablet-width + 1) {
-      display: none;
-    }
+  @media (max-width: $desktop-width - 1) {
+    min-height: 300px;
+    padding-top: 65px;
+    padding-left: 86px;
+  }
+
+  @media (max-width: $tablet-width - 1) {
+    min-height: 226px;
+    padding-top: 38px;
+    padding-left: 15px;
   }
 
   &--slide2 {
     background-image: url("../../img/man.jpg");
-    background-position: top 0 left 1px;
+    background-position: top 0 left -7px;
 
     @media (max-width: $desktop-width - 1) {
       background-size: auto 300px;
       background-position: top 0px right -98px;
     }
 
-    @media (max-width: $tablet-mobile-intermediate - 1) {
+    @media (max-width: $tablet-width - 1) {
       background-size: auto 226px;
       background-position: top 0px right -156px;
     }
@@ -32,14 +52,14 @@
 
   &--slide3 {
     background-image: url("../../img/girl.jpg");
-    background-position: top 0 left 1px;
+    background-position: top 0 left -7px;
 
     @media (max-width: $desktop-width - 1) {
       background-size: auto 300px;
       background-position: top 0px right -128px;
     }
 
-    @media (max-width: $tablet-mobile-intermediate - 1) {
+    @media (max-width: $tablet-width - 1) {
       background-size: auto 226px;
       background-position: top 0px right -169px;
     }
@@ -58,12 +78,12 @@
       150px 100%,
       150px 67%,
       270px 67%,
-      298px 100%;
+      307px 100%;
     background-position:
-      top 61px left 699px,
-      top 0 left 0,
-      left 150px bottom 0,
-      left 797px bottom 0,
+      top 61px left 691px,
+      top 0 left -7px,
+      left 141px bottom 0,
+      left 790px bottom 0,
       right 0 bottom 0;
 
     @media (max-width: $desktop-width - 1) {
@@ -81,26 +101,10 @@
         left 456px bottom 0;
     }
 
-    @media (max-width: $tablet-mobile-intermediate - 1) {
+    @media (max-width: $tablet-width - 1) {
       background-color: transparent;
       background-image: none;
     }
-  }
-
-  @media (max-width: $desktop-width - 1) {
-    min-height: 300px;
-    padding-top: 65px;
-    padding-left: 86px;
-  }
-
-   @media (max-width: $tablet-width) {
-    scroll-snap-align: start;
-  }
-
-  @media (max-width: $tablet-mobile-intermediate - 1) {
-    min-height: 226px;
-    padding-top: 38px;
-    padding-left: 15px;
   }
 }
 
@@ -131,6 +135,8 @@
 .slide__slogan {
   @include reset-indent;
   @include font(400, 22px, 26px);
+
+  width: 60%;
   margin-bottom: 35px;
   color: $slogan-dark;
 
@@ -139,19 +145,17 @@
   }
 
   @media (max-width: $desktop-width - 1) {
+    width: 50%;
     margin-bottom: 31px;
     font-size: 18px;
     line-height: 21px;
   }
 
   @media (max-width: $tablet-width - 1) {
+    width: 70%;
     margin-bottom: 26px;
     font-size: 16px;
     line-height: 19px;
-  }
-
-  @media (max-width: $tablet-mobile-intermediate - 1) {
-    width: 70%;
   }
 }
 

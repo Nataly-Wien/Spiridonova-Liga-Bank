@@ -105,14 +105,13 @@ const EnterModal = ({onCloseClick}) => {
         <label className="login-form__label" htmlFor="login-field">Пароль</label>
         <input className="login-form__control login-form__control--input login-form__control--input-password" type={`${isPasswordVisible ? `text` : `password`}`} name="password" id="password-field" value={inputs.password} onChange={(evt) => handleInputChange(evt, `password`)} required={true} ref={inputRefs.password} />
         <button className={`login-form__input-button login-form__input-button--${isPasswordVisible ? `visible` : `hidden`}`} type="button" onMouseDown={(evt) => handleEyeButtonDown(evt)} onMouseUp={() => setPasswordVisible(false)} tabIndex="-1"></button>
-        <a className="login-form__link" href="#" onClick={() => onCloseClick()}>Забыли пароль?</a>
       </p>
+      <a className="login-form__link" href="#" onClick={() => onCloseClick()}>Забыли пароль?</a>
       <button className="login-form__send-btn button button--blue" type="submit">Войти</button>
       <button className="login-form__close-btn" type="button" onClick={() => onCloseClick()} ref={lastFocusTarget}>
         <span className="visually-hidden">Закрыть</span>
       </button>
     </form>
-
   );
 };
 

@@ -22,7 +22,7 @@ const DepartmentMap = () => {
     iconLayout: `default#image`,
     iconImageHref: pin,
     iconImageSize: [37, 42],
-    iconImageOffset: [0, -42],
+    iconImageOffset: [-19, -42],
   };
 
   return (

@@ -47,17 +47,17 @@ const Header = () => {
 
   return (
     <header className={`header${isMobileMenuOpen ? ` header--mobile-menu` : ``}`}>
-      <nav className="header__main-nav container" onKeyDown={handleKeyDown}>
+      <nav className={`header__main-nav${isMobileMenuOpen ? ` header__main-nav--open` : ``} container`} onKeyDown={handleKeyDown}>
         <button className={"header__menu-button"} type="button" aria-label="Меню сайта" ref={firstFocusTarget} onClick={() => handleMobileMenuOpenClose(true)}>
           <span></span>
         </button>
-        <Logo type={LogoTypes.HEADER} />
-        <div className={`header__wrapper${isMobileMenuOpen ? ` header__wrapper--open` : ``}`}>
-          <div className={`header__menu${!isMobileMenuOpen ? ` header__menu--hidden` : ``}`}>
-            <MainMenu />
-          </div>
-          <UserNav isOpen={isMobileMenuOpen} />
+        <div className={`header__logo-wrapper${isMobileMenuOpen ? ` header__logo-wrapper--open` : ``}`}>
+          <Logo type={LogoTypes.HEADER} />
         </div>
+        <div className={`header__menu${!isMobileMenuOpen ? ` header__menu--hidden` : ``}`}>
+          <MainMenu />
+        </div>
+        <UserNav isOpen={isMobileMenuOpen} />
         {isMobileMenuOpen && <button className={"header__close-button"} type="button" ref={lastFocusTarget} onClick={() => handleMobileMenuOpenClose(false)}>
           <span className="visually-hidden">Закрыть</span>
         </button>}

@@ -2,14 +2,6 @@
 @import "../../sass/mixins.scss";
 
 .slider-controls {
-  &--hidden {
-    @media (min-width: $tablet-width + 1) {
-      display: none;
-    }
-  }
-}
-
-.slider-controls__list {
   @include list;
 
   position: absolute;
@@ -19,12 +11,14 @@
   padding-top: 35px;
   bottom: 40px;
 
+  &--tabs {
+    @media (min-width: $desktop-width) {
+      display: none;
+    }
+  }
+
   @media (max-width: $desktop-width - 1) {
     bottom: 15px;
-
-    &--tabs {
-      left: 0;
-    }
   }
 
   @media (max-width: $tablet-width - 1) {

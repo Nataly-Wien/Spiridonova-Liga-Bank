@@ -7,7 +7,7 @@
     margin-bottom: 26px;
   }
 
-  @media (max-width: $tablet-mobile-intermediate - 1) {
+  @media (max-width: $tablet-width - 1) {
     margin-bottom: 20px;
   }
 }
@@ -17,5 +17,10 @@
 
   @media (max-width: $desktop-width - 1) {
     margin-bottom: 10px;
+    margin-top: 26px;
+  }
+
+  @media (max-width: $tablet-width - 1) {
+    margin-top: 23px;
   }
 }

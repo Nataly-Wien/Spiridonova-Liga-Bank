@@ -37,7 +37,7 @@ const Slider = () => {
           );
         })}
       </div>
-      <SliderControls type={SliderTypes.SLIDER} currentSlide={currentSlide} onButtonClick={(btn) => setCurrentSlide(btn)} />
+      <SliderControls type={SliderTypes.SLIDER} currentSlide={currentSlide} />
     </section >
   );
 };

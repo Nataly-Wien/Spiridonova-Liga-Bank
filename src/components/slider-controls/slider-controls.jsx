@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import {SLIDER_LENGTH, TABS_LENGTH, SliderTypes} from '../../const';
 
-const SliderControls = ({type, currentSlide, onButtonClick}) => {
+const SliderControls = ({type, currentSlide}) => {
   const sliderControlsLength = type === SliderTypes.SLIDER ? SLIDER_LENGTH : TABS_LENGTH;
 
   const getControlButtons = (length, current) => {
@@ -14,10 +14,9 @@ const SliderControls = ({type, currentSlide, onButtonClick}) => {
 
       buttons.push(
         <li className="slider-controls__item" key={legend}>
-          <button className={`slider-controls__button${i === current ? ` slider-controls__button--current` : ``}${type === SliderTypes.SLIDER && (current === 0 || current === 1) && i === current ? ` slider-controls__button--white` : ``}`}
-            type="button" tabIndex="-1" onClick={() => onButtonClick(i)}>
+          <div className={`slider-controls__button${i === current ? ` slider-controls__button--current` : ``}${type === SliderTypes.SLIDER && (current === 0 || current === 1) && i === current ? ` slider-controls__button--white` : ``}`} >
             <span className="visually-hidden">{legend}</span>
-          </button>
+          </div>
         </li>
       );
     }
@@ -35,7 +34,6 @@ const SliderControls = ({type, currentSlide, onButtonClick}) => {
 SliderControls.propTypes = {
   type: PropTypes.string.isRequired,
   currentSlide: PropTypes.number.isRequired,
-  onButtonClick: PropTypes.func.isRequired,
 };
 
 export default SliderControls;

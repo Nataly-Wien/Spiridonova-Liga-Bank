@@ -20,7 +20,7 @@ const Tabs = () => {
           );
         })}
       </TabsControls>
-      <SliderControls type={SliderTypes.TABS} currentSlide={currentTab} onButtonClick={handleTabClick} />
+      <SliderControls type={SliderTypes.TABS} currentSlide={currentTab} />
     </section>
   );
 };

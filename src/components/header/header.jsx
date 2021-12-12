@@ -1,5 +1,7 @@
 import './header.scss';
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {ActionCreator} from '../../store/action';
 import Logo from '../logo/logo';
 import MainMenu from '../main-menu/main-menu';
 import UserNav from '../user-nav/user-nav';
@@ -7,7 +9,8 @@ import {useScrollBlock} from '../../hooks/use-scroll-block';
 import {LogoTypes} from '../../const';
 
 const Header = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const dispatch = useDispatch();
+  const isMobileMenuOpen = useSelector((state) => state.APPEARANCE.isMobileMenuOpen);
   const [blockScroll, allowScroll] = useScrollBlock();
 
   useEffect(() => {
@@ -20,7 +23,7 @@ const Header = () => {
 
   const handleMobileMenuOpenClose = (isOpen) => {
     isOpen ? blockScroll() : allowScroll();
-    setIsMobileMenuOpen(isOpen);
+    dispatch(ActionCreator.setMobileMenuOpen(isOpen));
   };
 
   const handleMouseDown = (evt) => {
@@ -33,7 +36,6 @@ const Header = () => {
   const lastFocusTarget = useRef(null);
 
   const handleKeyDown = (evt) => {
-    console.log(evt.target);
     if (evt.key === 'Tab' && !evt.shiftKey && evt.target.closest(`.header__close-button`)) {
       evt.preventDefault();
       firstFocusTarget.current.focus();

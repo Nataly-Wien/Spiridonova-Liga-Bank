@@ -7,7 +7,7 @@ import PurposeSelect from '../purpose-select/purpose-select';
 import CreditOptions from '../credit-options/credit-options';
 import Offer from '../offer/offer';
 import BidForm from '../bid-form/bid-form';
-import {CreditPurposes} from '../../const';
+import {CreditPurposes, RefLinks} from '../../const';
 
 const CreditCalculator = () => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const CreditCalculator = () => {
   }, [purpose]);
 
   return (
-    <ScrollableAnchor id={`link1`} >
+    <ScrollableAnchor id={RefLinks.CALCULATOR} >
       <section className="credit-calc container">
         <h2 className="credit-calc__title title">Кредитный калькулятор</h2>
         <div className="credit-calc__wrapper">

@@ -8,10 +8,13 @@ import {USER_NAV_ITEMS, MODAL_POPUPS, PopupTypes} from '../../const';
 const UserNav = ({isOpen}) => {
   const dispatch = useDispatch();
 
-  const handleEnterClick = () => dispatch(ActionCreator.showModal({
-    modalType: PopupTypes.ENTER,
-    modalProps: MODAL_POPUPS.enter,
-  }));
+  const handleEnterClick = () => {
+    dispatch(ActionCreator.setMobileMenuOpen(false));
+    dispatch(ActionCreator.showModal({
+      modalType: PopupTypes.ENTER,
+      modalProps: MODAL_POPUPS.enter,
+    }));
+  };
 
   return (
     <ul className={`header__user-nav user-nav ${isOpen ? ` user-nav--open` : ``}`}>

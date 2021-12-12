@@ -1,7 +1,8 @@
 import './department-map.scss';
 import React from 'react';
 import {YMaps, Map, Placemark} from 'react-yandex-maps';
-import ScrollableAnchor from 'react-scrollable-anchor'
+import ScrollableAnchor from 'react-scrollable-anchor';
+import {RefLinks} from '../../const';
 import pin from './../../img/location.svg';
 
 const DepartmentMap = () => {
@@ -26,7 +27,7 @@ const DepartmentMap = () => {
   };
 
   return (
-    <ScrollableAnchor id={`link2`} >
+    <ScrollableAnchor id={RefLinks.DEPARTMENTS} >
       <section className="department-map container container--map ">
         <h2 className="department-map__title title">Отделения Лига Банка</h2>
         <div className="department-map__wrapper map">

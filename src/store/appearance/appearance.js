@@ -4,6 +4,7 @@ const initialState = {
   modalType: null,
   modalProps: {},
   isBidShow: false,
+  isMobileMenuOpen: false,
 };
 
 const appearance = (state = initialState, action) => {
@@ -26,6 +27,12 @@ const appearance = (state = initialState, action) => {
       return {
         ...state,
         isBidShow: action.payload,
+      };
+
+    case ActionType.SET_MOBILE_MENU_OPEN:
+      return {
+        ...state,
+        isMobileMenuOpen: action.payload,
       };
 
     default: return state;

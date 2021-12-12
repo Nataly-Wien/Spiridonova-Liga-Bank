@@ -2,6 +2,7 @@ export const ActionType = {
   SHOW_MODAL: `appearance/showModal`,
   HIDE_MODAL: `appearance/hideModal`,
   SET_BID_SHOW: `appearance/setBidSHow`,
+  SET_MOBILE_MENU_OPEN: `appearance/setMobileMenuOpen`,
 
   SET_USER: `user/setUser`,
 
@@ -30,6 +31,11 @@ export const ActionCreator = {
 
   setBidSHow: (payload) => ({
     type: ActionType.SET_BID_SHOW,
+    payload,
+  }),
+
+  setMobileMenuOpen: (payload) => ({
+    type: ActionType.SET_MOBILE_MENU_OPEN,
     payload,
   }),
 

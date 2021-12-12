@@ -160,7 +160,7 @@ const PurposeSelect = ({purpose, onSelectChange}) => {
   }
 
   return (
-    <div onClick={(evt) => handleOnSelectClick(evt)}>
+    <div onClick={(evt) => handleOnSelectClick(evt)} onTouchStart={(evt) => handleOnSelectClick(evt)} >
       <Select className="purpose-select" classNamePrefix="purpose-select" components={{DropdownIndicator}}
         styles={customStyles} options={options} placeholder={``} value={value} menuIsOpen={isSelectMenuOpen}
         isSearchable={false} onChange={handleSelectChange} onKeyDown={handleKeyDown}

@@ -16,10 +16,7 @@ const CreditCalculator = () => {
 
   const handlePurposeChange = (purpose) => {
     dispatch(ActionCreator.setPurpose(purpose));
-
-    if (purpose === CreditPurposes.NONE) {
-      dispatch(ActionCreator.setBidSHow(false));
-    }
+    dispatch(ActionCreator.setBidSHow(false));
   }
 
   useEffect(() => {

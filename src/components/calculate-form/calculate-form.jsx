@@ -33,7 +33,7 @@ const CalculateForm = () => {
   useEffect(() => {
     calculateOffer();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [price, firstPay, time, mother, casco, life]);
+  }, [price, firstPay, firstPayTotal, time, mother, casco, life]);
 
 
   const calculateOffer = () => {

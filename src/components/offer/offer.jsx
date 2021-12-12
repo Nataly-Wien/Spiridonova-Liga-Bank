@@ -2,7 +2,7 @@ import './offer.scss';
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {ActionCreator} from '../../store/action';
-import {CreditConstants, getMoney, getCommaFormat} from '../../const';
+import {CreditConstants, CreditPurposes, getMoney, getCommaFormat} from '../../const';
 
 const Offer = () => {
   const purpose = useSelector((state) => state.CREDIT_CALC.purpose);
@@ -21,7 +21,7 @@ const Offer = () => {
         <div className="offer__wrapper">
           <div className="offer__offer-wrapper">
             <p className="offer__value">{getMoney(credit)}</p>
-            <p className="offer__name">Сумма ипотеки</p>
+            <p className="offer__name">{`Сумма ${purpose === CreditPurposes.HYPOTHEC ? `ипотеки` : `кредита`} `}</p>
           </div>
           <div className="offer__offer-wrapper">
             <p className="offer__value">{`${getCommaFormat((rate * 100).toFixed(2))}%`}</p>

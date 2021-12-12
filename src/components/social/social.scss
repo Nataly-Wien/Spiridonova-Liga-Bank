@@ -2,30 +2,28 @@
 @import "../../sass/variables.scss";
 
 .social {
-  display: flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  padding: 0;
-  list-style: none;
+  @include list;
+
+  display: grid;
+  grid-template-columns: repeat(4, 16px);
+  gap: 14px;
+  grid-template-rows: 16px;
+  justify-items:center;
 
   @media (max-width: $desktop-width - 1) {
-    justify-content: flex-start;
+    grid-template-columns: repeat(7, 16px);
+    margin-top: 14px;
+    margin-left: -5px;
+    gap: 19px;
+  }
+
+  @media (max-width: $tablet-width - 1) {
+    margin-left: 0;
   }
 }
 
 .social__item {
   @include reset-indent;
-
-  margin-right: 14px;
-
-  @media (max-width: $desktop-width - 1) {
-    margin-right: 19px;
-  }
-
-  &:last-of-type {
-    margin-right: 0;
-  }
 }
 
 .social__link:hover,

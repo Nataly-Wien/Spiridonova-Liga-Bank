@@ -4,29 +4,40 @@
 .purpose-select {
   @include font(500, 16px, 22px);
 
-  height: 60px;
   width: 100%;
-  padding: 12px 20px;
   margin-bottom: 35px;
-  font-family: inherit;
-  border: 1px solid $dark;
-  border-radius: 4px;
-  color: $dark;
-  background-color: $white;
-  background-image: url("../../img/select-caret.svg");
-  background-position: right 22px top 25px;
-  background-repeat: no-repeat;
-  appearance: none;
-  cursor: pointer;
 
   @media (max-width: $desktop-width - 1) {
-    margin-top: 5px;
+    margin-top: 19px;
     margin-bottom: 8px;
   }
 
   @media (max-width: $tablet-width - 1) {
+    margin-top: 15px;
     margin-bottom: 0;
-    padding: 12px 10px;
-    background-position: right 13px top 24px;
+  }
+}
+
+.purpose-select__value-container {
+  padding: 18px 22px;
+
+  @media (max-width: $tablet-width - 1) {
+    padding: 18px 12px;
+  }
+}
+
+.purpose-select__option {
+  padding: 19px 22px;
+
+  @media (max-width: $tablet-width - 1) {
+    padding: 19px 12px;
+  }
+}
+
+.purpose-select__indicator {
+  padding: 16px 24px;
+
+  @media (max-width: $tablet-width - 1) {
+    padding: 16px 12px;
   }
 }

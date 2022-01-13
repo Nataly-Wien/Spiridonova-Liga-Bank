@@ -162,19 +162,19 @@ export const MODAL_POPUPS = {
 
 export const SOCIAL_DATA = [
   {
-    title: `Услуги`,
+    title: `facebook`,
     icon: `facebook`,
   },
   {
-    title: `Рассчитать кредит`,
+    title: `instagram`,
     icon: `instagram`,
   },
   {
-    title: `Конвертер валют`,
+    title: `twitter`,
     icon: `twitter`,
   },
   {
-    title: `Контакты`,
+    title: `youtube`,
     icon: `youtube`,
   },
 ];
